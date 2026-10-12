@@ -68,9 +68,30 @@
 // console.log(5 !== 3); 
 
 //LOGICAL OPERATOR
-let age = 22;
-let hasID = true;
+// let age = 22;
+// let hasID = true;
 
-console.log(age >= 18 && hasID);
-console.log(age < 18 || hasID);  
-console.log(!hasID);
+// console.log(age >= 18 && hasID);
+// console.log(age < 18 || hasID);  
+// console.log(!hasID);
+
+//Explicit conversion
+// let value = "100";
+
+// let numberValue = Number(value);
+// let stringValue = String(500);
+
+// console.log(numberValue);
+// console.log(typeof numberValue);
+// console.log(stringValue);
+// console.log(typeof stringValue);
+
+//Type coercion
+// console.log("5" + 2);
+// console.log("5" - 2);
+// console.log(true + 1);
+
+//ADDITIONAL EXAMPLES  
+console.log(Number("hello"));
+console.log(Boolean(""));
+console.log(Boolean("false"));
