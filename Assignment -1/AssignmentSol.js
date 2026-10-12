@@ -317,5 +317,33 @@
 // }
 
 //Example 3: Temporal Dead Zone
-console.log(userRole);
-let userRole = "Admin";
+// console.log(userRole);
+// let userRole = "Admin";
+
+//TEMPLATE LITERALS
+//Example 1: Generate a Dynamic Invoice Message
+// const invoice = {
+//     id: "INV-2026-101",
+//     customer: "Ashmit",
+//     amount: 4500
+// };
+
+// const message = `Invoice ${invoice.id} for ${invoice.customer}: ₹${invoice.amount}`;
+
+// console.log(message);
+
+//Example 2: Generate a Multiline Server Log
+const request = {
+    method: "POST",
+    path: "/api/orders",
+    status: 201,
+    duration: 125
+};
+
+const log = `Request Summary:
+Method: ${request.method}
+Path: ${request.path}
+Status: ${request.status}
+Duration: ${request.duration}ms`;
+
+console.log(log);
