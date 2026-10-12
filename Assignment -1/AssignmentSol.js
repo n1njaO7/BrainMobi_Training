@@ -289,17 +289,33 @@
 // processOrder();
 
 //Example 2: Lexical Scope and Closures
-function createCounter() {
-    let count = 0;
+// function createCounter() {
+//     let count = 0;
 
-    return function () {
-        count++;
-        return count;
-    };
-}
+//     return function () {
+//         count++;
+//         return count;
+//     };
+// }
 
-const counter = createCounter();
+// const counter = createCounter();
 
-console.log(counter());
-console.log(counter());
-console.log(counter());
+// console.log(counter());
+// console.log(counter());
+// console.log(counter());
+
+//Example 1: var Hoisting
+// console.log(paymentStatus);
+// var paymentStatus = "Completed";
+// console.log(paymentStatus);
+
+//Example 2: Function Declaration Hoisting
+// calculateDiscount();
+
+// function calculateDiscount() {
+//     console.log("Discount calculated");
+// }
+
+//Example 3: Temporal Dead Zone
+console.log(userRole);
+let userRole = "Admin";
