@@ -256,15 +256,50 @@
 // console.log(activeUsers);
 
 //Example 2: Calculate Total Revenue
-const orders = [
-    { amount: 1200 },
-    { amount: 1800 },
-    { amount: 2000 }
-];
+// const orders = [
+//     { amount: 1200 },
+//     { amount: 1800 },
+//     { amount: 2000 }
+// ];
 
-const totalRevenue = orders.reduce(
-    (total, order) => total + order.amount,
-    0
-);
+// const totalRevenue = orders.reduce(
+//     (total, order) => total + order.amount,
+//     0
+// );
 
-console.log(totalRevenue);
+// console.log(totalRevenue);
+
+//GLOBAL , FUNCTION AND BLOCK
+//Example 1: Block Scope vs. Function Scope
+// function processOrder() {
+//     var orderId = 101;
+
+//     if (true) {
+//         var status = "Confirmed";
+//         let discount = 200;
+
+//         console.log(status);
+//         console.log(discount);
+//     }
+
+//     console.log(status);
+
+    // console.log(discount); // ReferenceError
+// }
+// processOrder();
+
+//Example 2: Lexical Scope and Closures
+function createCounter() {
+    let count = 0;
+
+    return function () {
+        count++;
+        return count;
+    };
+}
+
+const counter = createCounter();
+
+console.log(counter());
+console.log(counter());
+console.log(counter());
