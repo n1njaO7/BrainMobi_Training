@@ -112,20 +112,57 @@
 // }
 
 //SWITCH
-const statusCode = 404;
-switch (statusCode) {
-    case 200:
-        console.log("Request successful");
-        break;
-    case 401:
-        console.log("Unauthorized access");
-        break;
-    case 404:
-        console.log("Resource not found");
-        break;
-    case 500:
-        console.log("Internal server error");
-        break;
-    default:
-        console.log("Unknown status code");
-}
+// const statusCode = 404;
+// switch (statusCode) {
+//     case 200:
+//         console.log("Request successful");
+//         break;
+//     case 401:
+//         console.log("Unauthorized access");
+//         break;
+//     case 404:
+//         console.log("Resource not found");
+//         break;
+//     case 500:
+//         console.log("Internal server error");
+//         break;
+//     default:
+//         console.log("Unknown status code");
+// }
+
+//FOR LOOP
+// const orders = [
+//     { id: 101, amount: 1500 },
+//     { id: 102, amount: 2500 },
+//     { id: 103, amount: 1000 }
+// ];
+
+// let total = 0;
+
+// for (let i = 0; i < orders.length; i++) {
+//     total += orders[i].amount;
+// }
+
+// console.log("Total order amount:", total);
+
+//WHILE LOOP
+// let attempts = 0;
+// const maxAttempts = 3;
+
+// while (attempts < maxAttempts) {
+//     attempts++;
+//     console.log(`Attempt ${attempts}`);
+
+//     // Simulate a failed attempt.
+// }
+
+// console.log("Maximum attempts reached");
+
+//DO-WHILE
+let page = 1;
+const totalPages = 0;
+
+do {
+    console.log(`Processing page ${page}`);
+    page++;
+} while (page <= totalPages);
