@@ -41,11 +41,36 @@
 // console.log(b);
 
 //non primitive 
-let user1 = { name: "Ashmit" };
-let user2 = user1;
+// let user1 = { name: "Ashmit" };
+// let user2 = user1;
 
-user2.name = "Rahul";
+// user2.name = "Rahul";
 
-console.log(user1.name);
-console.log(user2.name);
+// console.log(user1.name);
+// console.log(user2.name);
 
+//Airthmetic operator
+// let a = 10;
+// let b = 3;
+
+// console.log(a + b);  
+// console.log(a - b);  
+// console.log(a * b);  
+// console.log(a / b);  
+// console.log(a % b);  
+// console.log(a ** b); 
+
+//COMPARISION OPERATOR
+// console.log(5 > 3);   
+// console.log(5 < 3);   
+// console.log(5 == "5");  
+// console.log(5 === "5"); 
+// console.log(5 !== 3); 
+
+//LOGICAL OPERATOR
+let age = 22;
+let hasID = true;
+
+console.log(age >= 18 && hasID);
+console.log(age < 18 || hasID);  
+console.log(!hasID);
