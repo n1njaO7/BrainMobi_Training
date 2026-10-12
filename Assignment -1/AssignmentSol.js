@@ -92,6 +92,40 @@
 // console.log(true + 1);
 
 //ADDITIONAL EXAMPLES  
-console.log(Number("hello"));
-console.log(Boolean(""));
-console.log(Boolean("false"));
+// console.log(Number("hello"));
+// console.log(Boolean(""));
+// console.log(Boolean("false"));
+
+//IF-ELSE
+// const user = {
+//     email: "ashmit@example.com",
+//     password: "secure123",
+//     isVerified: true
+// };
+
+// if (!user.email || !user.password) {
+//     console.log("Email and password are required");
+// } else if (!user.isVerified) {
+//     console.log("Please verify your account");
+// } else {
+//     console.log("Login validation successful");
+// }
+
+//SWITCH
+const statusCode = 404;
+switch (statusCode) {
+    case 200:
+        console.log("Request successful");
+        break;
+    case 401:
+        console.log("Unauthorized access");
+        break;
+    case 404:
+        console.log("Resource not found");
+        break;
+    case 500:
+        console.log("Internal server error");
+        break;
+    default:
+        console.log("Unknown status code");
+}
