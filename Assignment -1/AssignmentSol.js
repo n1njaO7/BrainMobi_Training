@@ -159,10 +159,44 @@
 // console.log("Maximum attempts reached");
 
 //DO-WHILE
-let page = 1;
-const totalPages = 0;
+// let page = 1;
+// const totalPages = 0;
 
-do {
-    console.log(`Processing page ${page}`);
-    page++;
-} while (page <= totalPages);
+// do {
+//     console.log(`Processing page ${page}`);
+//     page++;
+// } while (page <= totalPages);
+
+//BREAK
+// const users = [
+//     { id: 1, name: "Rahul" },
+//     { id: 2, name: "Ashmit" },
+//     { id: 3, name: "Priya" }
+// ];
+
+// const targetId = 2;
+// let foundUser = null;
+
+// for (const user of users) {
+//     if (user.id === targetId) {
+//         foundUser = user;
+//         break;
+//     }
+// }
+
+// console.log(foundUser);
+
+//SKIP
+const transactions = [1200, -500, 800, 0, 1500];
+
+let validTotal = 0;
+
+for (const amount of transactions) {
+    if (amount <= 0) {
+        continue;
+    }
+
+    validTotal += amount;
+}
+
+console.log("Valid total:", validTotal);
