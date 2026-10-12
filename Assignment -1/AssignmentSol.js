@@ -187,16 +187,39 @@
 // console.log(foundUser);
 
 //SKIP
-const transactions = [1200, -500, 800, 0, 1500];
+// const transactions = [1200, -500, 800, 0, 1500];
 
-let validTotal = 0;
+// let validTotal = 0;
 
-for (const amount of transactions) {
-    if (amount <= 0) {
-        continue;
+// for (const amount of transactions) {
+//     if (amount <= 0) {
+//         continue;
+//     }
+
+//     validTotal += amount;
+// }
+
+// console.log("Valid total:", validTotal);
+
+//FUNCTION 
+//Example 1: Calculate an Order Total
+
+// function calculateOrderTotal(price, quantity, discount = 0) {
+//     const subtotal = price * quantity;
+//     return subtotal - discount;
+// }
+
+// console.log(calculateOrderTotal(1000, 3, 500));
+// console.log(calculateOrderTotal(1000, 2));
+
+//Example 2: Validate Required User Fields
+function validateUser(name, email) {
+    if (!name || !email) {
+        return "Name and email are required";
     }
 
-    validTotal += amount;
+    return "User data is valid";
 }
 
-console.log("Valid total:", validTotal);
+console.log(validateUser("Ashmit", "ashmit@example.com"));
+console.log(validateUser("", "ashmit@example.com"));
