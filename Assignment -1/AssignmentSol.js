@@ -233,11 +233,38 @@
 // console.log(calculateTax(5000, 18));
 
 //Example 2: Pass a Function as an Argument
-const processPayment = function (amount, callback) {
-    console.log(`Processing payment of ₹${amount}`);
-    callback(amount);
-};
+// const processPayment = function (amount, callback) {
+//     console.log(`Processing payment of ₹${amount}`);
+//     callback(amount);
+// };
 
-processPayment(2500, function (amount) {
-    console.log(`Payment of ₹${amount} processed`);
-});
+// processPayment(2500, function (amount) {
+//     console.log(`Payment of ₹${amount} processed`);
+// });
+
+//ARROW
+//Example 1: Filter Active Users
+
+// const users = [
+//     { name: "Ashmit", active: true },
+//     { name: "Rahul", active: false },
+//     { name: "Priya", active: true }
+// ];
+
+// const activeUsers = users.filter(user => user.active);
+
+// console.log(activeUsers);
+
+//Example 2: Calculate Total Revenue
+const orders = [
+    { amount: 1200 },
+    { amount: 1800 },
+    { amount: 2000 }
+];
+
+const totalRevenue = orders.reduce(
+    (total, order) => total + order.amount,
+    0
+);
+
+console.log(totalRevenue);
