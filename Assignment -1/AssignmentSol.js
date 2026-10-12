@@ -213,13 +213,31 @@
 // console.log(calculateOrderTotal(1000, 2));
 
 //Example 2: Validate Required User Fields
-function validateUser(name, email) {
-    if (!name || !email) {
-        return "Name and email are required";
-    }
+// function validateUser(name, email) {
+//     if (!name || !email) {
+//         return "Name and email are required";
+//     }
 
-    return "User data is valid";
-}
+//     return "User data is valid";
+// }
 
-console.log(validateUser("Ashmit", "ashmit@example.com"));
-console.log(validateUser("", "ashmit@example.com"));
+// console.log(validateUser("Ashmit", "ashmit@example.com"));
+// console.log(validateUser("", "ashmit@example.com"));
+
+//FUNCTION EXPRESSION
+// Example 1: Store Business Logic in a Variable
+// const calculateTax = function (amount, taxRate) {
+//     return amount * taxRate / 100;
+// };
+
+// console.log(calculateTax(5000, 18));
+
+//Example 2: Pass a Function as an Argument
+const processPayment = function (amount, callback) {
+    console.log(`Processing payment of ₹${amount}`);
+    callback(amount);
+};
+
+processPayment(2500, function (amount) {
+    console.log(`Payment of ₹${amount} processed`);
+});
