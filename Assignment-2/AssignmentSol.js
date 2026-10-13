@@ -11,12 +11,23 @@
 
 
 //Accessing and updating elements
-const cart = ["Laptop", "Mouse", "Keyboard"];
+// const cart = ["Laptop", "Mouse", "Keyboard"];
 
-cart[1] = "Wireless Mouse";
+// cart[1] = "Wireless Mouse";
 
-console.log(cart);
-console.log(cart[3]);
+// console.log(cart);
+// console.log(cart[3]);
+
+// const roles = ["user", "editor"];
+
+// roles.push("admin");  // Allowed
+// roles[0] = "member";  // Allowed
+// console.log(roles);
+
+// // roles = [];        // TypeError: reassignment is not allowed
+// console.log(roles);
+
+
 
 
 
