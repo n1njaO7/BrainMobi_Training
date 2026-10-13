@@ -35,18 +35,28 @@
 // console.log(scores.at(-2)); 
 
 //push() — Add elements at the end
-const taskQueue = ["Validate Order", "Process Payment"];
+// const taskQueue = ["Validate Order", "Process Payment"];
 
-const newLength = taskQueue.push("Generate Invoice");
+// const newLength = taskQueue.push("Generate Invoice");
 
-console.log(taskQueue);
-console.log(newLength);
+// console.log(taskQueue);
+// console.log(newLength);
 
-const permissions = ["read"];
+// const permissions = ["read"];
 
-permissions.push("write", "delete");
+// permissions.push("write", "delete");
 
-console.log(permissions);
+// console.log(permissions);
+
+//pop() — Remove the last element
+const pendingTasks = [
+    "Validate Order",
+    "Process Payment",
+    "Generate Invoice"
+];
+const removedTask = pendingTasks.pop();
+console.log(removedTask);
+console.log(pendingTasks);
 
 
 
