@@ -144,11 +144,30 @@
 // console.log(original);
 
 //Shallow Copy
-const users = [
-    { id: 1, role: "user" },
-    { id: 2, role: "admin" }
-];
+// const users = [
+//     { id: 1, role: "user" },
+//     { id: 2, role: "admin" }
+// ];
 
-const copiedUsers = users.slice();
-copiedUsers[0].role = "editor";
-console.log(users[0].role); 
+// const copiedUsers = users.slice();
+// copiedUsers[0].role = "editor";
+// console.log(users[0].role); 
+
+//DATASET
+const orders = [
+    { id: 101, customer: "Aman", amount: 2500, status: "completed" },
+    { id: 102, customer: "Priya", amount: 1800, status: "pending" },
+    { id: 103, customer: "Rahul", amount: 3200, status: "completed" },
+    { id: 104, customer: "Neha", amount: 1200, status: "cancelled" }
+];
+//Map(): Create a response containing only order IDs and amounts
+const orderSummaries = orders.map(order => ({
+    orderId: order.id,
+    total: order.amount
+}));
+console.log(orderSummaries);
+
+
+
+
+
