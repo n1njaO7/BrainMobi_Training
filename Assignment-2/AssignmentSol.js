@@ -209,11 +209,17 @@
 // console.log(admin);
 
 //findIndex() - Return the first matching index
-const products = [
-    { id: "P101", stock: 12 },
-    { id: "P102", stock: 0 },
-    { id: "P103", stock: 7 }
-];
-const outOfStockIndex = products.findIndex(product => product.stock === 0);
+// const products = [
+//     { id: "P101", stock: 12 },
+//     { id: "P102", stock: 0 },
+//     { id: "P103", stock: 7 }
+// ];
+// const outOfStockIndex = products.findIndex(product => product.stock === 0);
 
-console.log(outOfStockIndex);
+// console.log(outOfStockIndex);
+
+//includes() — Check for an exact value
+const allowedRoles = ["admin", "editor", "manager"];
+
+console.log(allowedRoles.includes("editor")); // true
+console.log(allowedRoles.includes("guest"));  // false
