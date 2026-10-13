@@ -168,12 +168,31 @@ const orders = [
 // console.log(orderSummaries);
 
 //FILTER(): Find completed orders worth at least ₹2,000
-const eligibleOrders = orders.filter(order => {
-    return order.status === "completed" && order.amount >= 2000;
-});
+// const eligibleOrders = orders.filter(order => {
+//     return order.status === "completed" && order.amount >= 2000;
+// });
 
-console.log(eligibleOrders);
+// console.log(eligibleOrders);
+
+//REDUCE()
+//Example A: Calculate total completed-order revenue
+const totalRevenue = orders.reduce((total, order) => {
+    if (order.status === "completed") {
+        return total + order.amount;
+    }
+
+    return total;
+}, 0);
+
+console.log(totalRevenue);
 
 
+//Example B: Build a revenue summary by status
+const revenueByStatus = orders.reduce((summary, order) => {
+    summary[order.status] =
+        (summary[order.status] || 0) + order.amount;
 
+    return summary;
+}, {});
 
+console.log(revenueByStatus);
