@@ -92,13 +92,20 @@
 
 
 //Slice Example: Extract products for a page
-const products = [
-    "Laptop",
-    "Monitor",
-    "Keyboard",
-    "Mouse",
-    "Webcam"
-];
-const pageProducts = products.slice(1, 4);
-console.log(pageProducts);
-console.log(products);
+// const products = [
+//     "Laptop",
+//     "Monitor",
+//     "Keyboard",
+//     "Mouse",
+//     "Webcam"
+// ];
+// const pageProducts = products.slice(1, 4);
+// console.log(pageProducts);
+// console.log(products);
+
+//Negative indexes with slice()
+const months = ["Jan", "Feb", "Mar", "Apr", "May"];
+
+console.log(months.slice(-2));
+console.log(months.slice(1, -1));
+console.log(months.slice());
