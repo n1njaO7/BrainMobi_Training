@@ -28,11 +28,25 @@
 // console.log(roles);
 
 // Negative indexing
-const scores = [72, 85, 91, 96];
+// const scores = [72, 85, 91, 96];
 
-console.log(scores[-1]);   
-console.log(scores.at(-1));     
-console.log(scores.at(-2));     
+// console.log(scores[-1]);   
+// console.log(scores.at(-1));     
+// console.log(scores.at(-2)); 
+
+//push() — Add elements at the end
+const taskQueue = ["Validate Order", "Process Payment"];
+
+const newLength = taskQueue.push("Generate Invoice");
+
+console.log(taskQueue);
+console.log(newLength);
+
+const permissions = ["read"];
+
+permissions.push("write", "delete");
+
+console.log(permissions);
 
 
 
