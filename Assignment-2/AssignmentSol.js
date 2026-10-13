@@ -104,8 +104,20 @@
 // console.log(products);
 
 //Negative indexes with slice()
-const months = ["Jan", "Feb", "Mar", "Apr", "May"];
+// const months = ["Jan", "Feb", "Mar", "Apr", "May"];
 
-console.log(months.slice(-2));
-console.log(months.slice(1, -1));
-console.log(months.slice());
+// console.log(months.slice(-2));
+// console.log(months.slice(1, -1));
+// console.log(months.slice());
+
+//Spice 
+//Remove discontinued products
+const inventory = [
+    "Laptop",
+    "Old Monitor",
+    "Keyboard",
+    "Mouse"
+];
+const removedItems = inventory.splice(1, 1);
+console.log(removedItems);
+console.log(inventory);
