@@ -49,14 +49,24 @@
 // console.log(permissions);
 
 //pop() — Remove the last element
-const pendingTasks = [
-    "Validate Order",
-    "Process Payment",
-    "Generate Invoice"
+// const pendingTasks = [
+//     "Validate Order",
+//     "Process Payment",
+//     "Generate Invoice"
+// ];
+// const removedTask = pendingTasks.pop();
+// console.log(removedTask);
+// console.log(pendingTasks);
+
+//shift() — Remove the first element
+const requests = [
+    "Request A",
+    "Request B",
+    "Request C"
 ];
-const removedTask = pendingTasks.pop();
-console.log(removedTask);
-console.log(pendingTasks);
+const processedRequest = requests.shift();
+console.log(processedRequest);
+console.log(requests);
 
 
 
