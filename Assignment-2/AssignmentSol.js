@@ -219,7 +219,13 @@
 // console.log(outOfStockIndex);
 
 //includes() — Check for an exact value
-const allowedRoles = ["admin", "editor", "manager"];
+// const allowedRoles = ["admin", "editor", "manager"];
 
-console.log(allowedRoles.includes("editor")); // true
-console.log(allowedRoles.includes("guest"));  // false
+// console.log(allowedRoles.includes("editor")); // true
+// console.log(allowedRoles.includes("guest"));  // false
+
+//difference: objects and includes()
+const users = [
+    { id: 1, name: "Aman" }
+];
+console.log(users.includes({ id: 1, name: "Aman" }));
