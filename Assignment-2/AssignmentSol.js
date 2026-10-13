@@ -112,12 +112,17 @@
 
 //Spice 
 //Remove discontinued products
-const inventory = [
-    "Laptop",
-    "Old Monitor",
-    "Keyboard",
-    "Mouse"
-];
-const removedItems = inventory.splice(1, 1);
-console.log(removedItems);
+// const inventory = [
+//     "Laptop",
+//     "Old Monitor",
+//     "Keyboard",
+//     "Mouse"
+// ];
+// const removedItems = inventory.splice(1, 1);
+// console.log(removedItems);
+// console.log(inventory);
+
+//Insert a product
+const inventory = ["Laptop", "Mouse"];
+inventory.splice(1, 0, "Monitor");
 console.log(inventory);
