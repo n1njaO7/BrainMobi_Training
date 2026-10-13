@@ -27,7 +27,12 @@
 // // roles = [];        // TypeError: reassignment is not allowed
 // console.log(roles);
 
+// Negative indexing
+const scores = [72, 85, 91, 96];
 
+console.log(scores[-1]);   
+console.log(scores.at(-1));     
+console.log(scores.at(-2));     
 
 
 
