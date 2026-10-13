@@ -69,15 +69,25 @@
 // console.log(requests);
 
 //unshift() — Add elements at the beginning
-const notifications = [
-    "Payment received",
-    "Invoice generated"
-];
-const newLength = notifications.unshift("New order received");
+// const notifications = [
+//     "Payment received",
+//     "Invoice generated"
+// ];
+// const newLength = notifications.unshift("New order received");
 
-console.log(notifications);
-console.log(newLength);
+// console.log(notifications);
+// console.log(newLength);
 
+//Combined practical example
+const supportQueue = ["Ticket-101", "Ticket-102"];
 
+supportQueue.push("Ticket-103");
+console.log(supportQueue);
+
+const currentTicket = supportQueue.shift();
+console.log("Processing:", currentTicket);
+
+supportQueue.unshift("Urgent-Ticket-104");
+console.log("Updated queue:", supportQueue);
 
 
