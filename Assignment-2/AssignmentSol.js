@@ -198,12 +198,22 @@
 // console.log(revenueByStatus);
 
 //find() — Return the first matching element
-const users = [
-    { id: 11, name: "Aman", role: "user" },
-    { id: 12, name: "Priya", role: "admin" },
-    { id: 13, name: "Rahul", role: "admin" }
+// const users = [
+//     { id: 11, name: "Aman", role: "user" },
+//     { id: 12, name: "Priya", role: "admin" },
+//     { id: 13, name: "Rahul", role: "admin" }
+// ];
+
+// const admin = users.find(user => user.role === "admin");
+
+// console.log(admin);
+
+//findIndex() - Return the first matching index
+const products = [
+    { id: "P101", stock: 12 },
+    { id: "P102", stock: 0 },
+    { id: "P103", stock: 7 }
 ];
+const outOfStockIndex = products.findIndex(product => product.stock === 0);
 
-const admin = users.find(user => user.role === "admin");
-
-console.log(admin);
+console.log(outOfStockIndex);
