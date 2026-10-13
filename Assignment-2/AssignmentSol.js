@@ -123,6 +123,13 @@
 // console.log(inventory);
 
 //Insert a product
-const inventory = ["Laptop", "Mouse"];
-inventory.splice(1, 0, "Monitor");
+// const inventory = ["Laptop", "Mouse"];
+// inventory.splice(1, 0, "Monitor");
+// console.log(inventory);
+
+//Replace an element 
+const inventory = ["Laptop", "Old Monitor", "Mouse"];
+
+const removedItems = inventory.splice(1, 1, "4K Monitor");
+console.log(removedItems);
 console.log(inventory);
