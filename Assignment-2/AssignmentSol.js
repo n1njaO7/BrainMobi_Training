@@ -161,12 +161,18 @@ const orders = [
     { id: 104, customer: "Neha", amount: 1200, status: "cancelled" }
 ];
 //Map(): Create a response containing only order IDs and amounts
-const orderSummaries = orders.map(order => ({
-    orderId: order.id,
-    total: order.amount
-}));
-console.log(orderSummaries);
+// const orderSummaries = orders.map(order => ({
+//     orderId: order.id,
+//     total: order.amount
+// }));
+// console.log(orderSummaries);
 
+//FILTER(): Find completed orders worth at least ₹2,000
+const eligibleOrders = orders.filter(order => {
+    return order.status === "completed" && order.amount >= 2000;
+});
+
+console.log(eligibleOrders);
 
 
 
