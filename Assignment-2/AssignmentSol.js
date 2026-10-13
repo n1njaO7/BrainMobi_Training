@@ -128,8 +128,17 @@
 // console.log(inventory);
 
 //Replace an element 
-const inventory = ["Laptop", "Old Monitor", "Mouse"];
+// const inventory = ["Laptop", "Old Monitor", "Mouse"];
 
-const removedItems = inventory.splice(1, 1, "4K Monitor");
-console.log(removedItems);
-console.log(inventory);
+// const removedItems = inventory.splice(1, 1, "4K Monitor");
+// console.log(removedItems);
+// console.log(inventory);
+
+//Important difference
+const original = [10, 20, 30, 40];
+const sliced = original.slice(1, 3);
+const spliced = original.splice(1, 2);
+
+console.log(sliced);
+console.log(spliced);
+console.log(original);
