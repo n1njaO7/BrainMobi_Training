@@ -154,12 +154,12 @@
 // console.log(users[0].role); 
 
 //DATASET
-const orders = [
-    { id: 101, customer: "Aman", amount: 2500, status: "completed" },
-    { id: 102, customer: "Priya", amount: 1800, status: "pending" },
-    { id: 103, customer: "Rahul", amount: 3200, status: "completed" },
-    { id: 104, customer: "Neha", amount: 1200, status: "cancelled" }
-];
+// const orders = [
+//     { id: 101, customer: "Aman", amount: 2500, status: "completed" },
+//     { id: 102, customer: "Priya", amount: 1800, status: "pending" },
+//     { id: 103, customer: "Rahul", amount: 3200, status: "completed" },
+//     { id: 104, customer: "Neha", amount: 1200, status: "cancelled" }
+// ];
 //Map(): Create a response containing only order IDs and amounts
 // const orderSummaries = orders.map(order => ({
 //     orderId: order.id,
@@ -176,23 +176,34 @@ const orders = [
 
 //REDUCE()
 //Example A: Calculate total completed-order revenue
-const totalRevenue = orders.reduce((total, order) => {
-    if (order.status === "completed") {
-        return total + order.amount;
-    }
+// const totalRevenue = orders.reduce((total, order) => {
+//     if (order.status === "completed") {
+//         return total + order.amount;
+//     }
 
-    return total;
-}, 0);
+//     return total;
+// }, 0);
 
-console.log(totalRevenue);
+// console.log(totalRevenue);
 
 
 //Example B: Build a revenue summary by status
-const revenueByStatus = orders.reduce((summary, order) => {
-    summary[order.status] =
-        (summary[order.status] || 0) + order.amount;
+// const revenueByStatus = orders.reduce((summary, order) => {
+//     summary[order.status] =
+//         (summary[order.status] || 0) + order.amount;
 
-    return summary;
-}, {});
+//     return summary;
+// }, {});
 
-console.log(revenueByStatus);
+// console.log(revenueByStatus);
+
+//find() — Return the first matching element
+const users = [
+    { id: 11, name: "Aman", role: "user" },
+    { id: 12, name: "Priya", role: "admin" },
+    { id: 13, name: "Rahul", role: "admin" }
+];
+
+const admin = users.find(user => user.role === "admin");
+
+console.log(admin);
