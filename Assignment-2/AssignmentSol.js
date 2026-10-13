@@ -135,10 +135,20 @@
 // console.log(inventory);
 
 //Important difference
-const original = [10, 20, 30, 40];
-const sliced = original.slice(1, 3);
-const spliced = original.splice(1, 2);
+// const original = [10, 20, 30, 40];
+// const sliced = original.slice(1, 3);
+// const spliced = original.splice(1, 2);
 
-console.log(sliced);
-console.log(spliced);
-console.log(original);
+// console.log(sliced);
+// console.log(spliced);
+// console.log(original);
+
+//Shallow Copy
+const users = [
+    { id: 1, role: "user" },
+    { id: 2, role: "admin" }
+];
+
+const copiedUsers = users.slice();
+copiedUsers[0].role = "editor";
+console.log(users[0].role); 
