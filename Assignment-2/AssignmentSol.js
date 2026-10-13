@@ -59,14 +59,24 @@
 // console.log(pendingTasks);
 
 //shift() — Remove the first element
-const requests = [
-    "Request A",
-    "Request B",
-    "Request C"
+// const requests = [
+//     "Request A",
+//     "Request B",
+//     "Request C"
+// ];
+// const processedRequest = requests.shift();
+// console.log(processedRequest);
+// console.log(requests);
+
+//unshift() — Add elements at the beginning
+const notifications = [
+    "Payment received",
+    "Invoice generated"
 ];
-const processedRequest = requests.shift();
-console.log(processedRequest);
-console.log(requests);
+const newLength = notifications.unshift("New order received");
+
+console.log(notifications);
+console.log(newLength);
 
 
 
