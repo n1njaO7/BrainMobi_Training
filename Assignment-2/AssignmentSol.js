@@ -79,15 +79,26 @@
 // console.log(newLength);
 
 //Combined practical example
-const supportQueue = ["Ticket-101", "Ticket-102"];
+// const supportQueue = ["Ticket-101", "Ticket-102"];
 
-supportQueue.push("Ticket-103");
-console.log(supportQueue);
+// supportQueue.push("Ticket-103");
+// console.log(supportQueue);
 
-const currentTicket = supportQueue.shift();
-console.log("Processing:", currentTicket);
+// const currentTicket = supportQueue.shift();
+// console.log("Processing:", currentTicket);
 
-supportQueue.unshift("Urgent-Ticket-104");
-console.log("Updated queue:", supportQueue);
+// supportQueue.unshift("Urgent-Ticket-104");
+// console.log("Updated queue:", supportQueue);
 
 
+//Slice Example: Extract products for a page
+const products = [
+    "Laptop",
+    "Monitor",
+    "Keyboard",
+    "Mouse",
+    "Webcam"
+];
+const pageProducts = products.slice(1, 4);
+console.log(pageProducts);
+console.log(products);
