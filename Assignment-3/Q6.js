@@ -23,10 +23,7 @@ function isPalindrome(num){
         let digit = n%10;
         reverseDigit = (reverseDigit*10)+digit;
     }
-    if(num===reverseDigit){
-        return true;
-    }
-    return false;
+    return num===reverseDigit
 }
 // checking Palindrome number 
 function isPerfectNumber(num){
