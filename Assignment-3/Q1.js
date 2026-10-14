@@ -4,10 +4,10 @@ function safeEqual(a,b){
 
 //Object.is() compares two values using its own precise equality rules.
 
-console.log(safeEqual(NaN, NaN)); 
-console.log(safeEqual(0, -0));    
-console.log(safeEqual("0", 0));   
-console.log(safeEqual(5, 5));  
+console.log(safeEqual(NaN, NaN)); //true
+console.log(safeEqual(0, -0));    //false
+console.log(safeEqual("0", 0));   //false
+console.log(safeEqual(5, 5));     //true
 
 /*It is stricter than === because it distinguishes between NaN and NaN 
 (treating them as equal) and between +0 and -0 (treating them as different). 
