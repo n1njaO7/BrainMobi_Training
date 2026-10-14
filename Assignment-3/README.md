@@ -44,9 +44,3 @@ Q9. Counter factory. Write createCounter(start, step) returning an object with i
 Q10. Function composition. Write compose(...fns), which takes any number of functions and returns a new function applying them right-to-left. Example: compose(addOne, double, square)(3) should compute addOne(double(square(3))). Use rest parameters and an arrow function. Also write pipe (left-to-right).
  
 
-
-
-Q24. Mini inventory system. Build a menu-less, function-based inventory manager using one array of objects: addItem, removeItem(id), updateStock(id, delta) (never allow negative stock), lowStock(threshold), totalValue(), and searchByName(term). Use closures to keep the array private, template literals for a report, and at least one use of each of map, filter, reduce, find, findIndex, and splice. Write 10 test calls with console.log showing edge cases.
-MARKAÐS MÁL VERKEFNA STÝRING – Object.is
-Markmiðadrifin markaðsráðgjöf og verkefnastýring
- 
