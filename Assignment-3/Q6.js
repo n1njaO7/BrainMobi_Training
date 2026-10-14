@@ -18,7 +18,7 @@ function isPalindrome(num){
     {
         return false
     }
-    reverseDigit=0;
+    let reverseDigit=0;
     for(let n = num ; n>0;n=Math.floor(n/10)){
         let digit = n%10;
         reverseDigit = (reverseDigit*10)+digit;
