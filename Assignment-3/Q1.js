@@ -12,5 +12,5 @@ console.log(safeEqual(5, 5));     //true
 /*It is stricter than === because it distinguishes between NaN and NaN 
 (treating them as equal) and between +0 and -0 (treating them as different). 
 Unlike ==, it performs no type coercion, but unlike ===, it follows precise 
-equality rules for these two edge cases.
+equality rules for these two cases.
 */
