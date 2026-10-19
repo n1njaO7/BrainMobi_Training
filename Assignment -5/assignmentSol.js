@@ -38,29 +38,60 @@
 // ); // true
 
 
-//sort()
-const values = [100, 4, 25, 9, 4];
+// //sort()
+// const values = [100, 4, 25, 9, 4];
 
-values.sort((a, b) => a - b);
-console.log(values); // [4, 4, 9, 25, 100] ascending
+// values.sort((a, b) => a - b);
+// console.log(values); // [4, 4, 9, 25, 100] ascending
 
-values.sort((a, b) => b - a);
-console.log(values); // [100, 25, 9, 4, 4] descending
+// values.sort((a, b) => b - a);
+// console.log(values); // [100, 25, 9, 4, 4] descending
 
-const names = ["Zara", "aman", "Aman", "Bob"];
-names.sort((a, b) => a.localeCompare(b, undefined, {
-    sensitivity: "base"
-}));
-// Case-insensitive alphabetical ordering
+// const names = ["Zara", "aman", "Aman", "Bob"];
+// names.sort((a, b) => a.localeCompare(b, undefined, {
+//     sensitivity: "base"
+// }));
+// // Case-insensitive alphabetical ordering
 
-const users = [
-    { name: "Priya", age: 19 },
-    { name: "Aman", age: 24 },
-    { name: "Rahul", age: 17 }
-];
-users.sort((a, b) => a.age - b.age);
-// Sort objects by age ascending
+// const users = [
+//     { name: "Priya", age: 19 },
+//     { name: "Aman", age: 24 },
+//     { name: "Rahul", age: 17 }
+// ];
+// users.sort((a, b) => a.age - b.age);
+// // Sort objects by age ascending
 
-const original = [3, 1, 2];
-const sortedCopy = [...original].sort((a, b) => a - b);
-// original remains [3, 1, 2]
+// const original = [3, 1, 2];
+// const sortedCopy = [...original].sort((a, b) => a - b);
+// // original remains [3, 1, 2]
+
+//Object and Object Properties
+const user = {
+    name: "Aman",
+    age: 24,
+    "home city": "Ayodhya",
+    isActive: true
+};
+
+// Read properties
+console.log(user.name);        // "Aman"
+console.log(user["home city"]); // "Ayodhya"
+
+// Add and update properties
+user.email = "aman@example.com";
+user.age = 25;
+
+// Check whether a property exists directly on the object
+console.log(Object.hasOwn(user, "name")); // true
+console.log(Object.hasOwn(user, "phone")); // false
+
+// Delete a property
+delete user.isActive;
+
+// Get keys, values, and key-value pairs
+console.log(Object.keys(user));
+console.log(Object.values(user));
+console.log(Object.entries(user));
+
+// Destructuring-like property access isn't required to read values
+console.log("email" in user); // true
