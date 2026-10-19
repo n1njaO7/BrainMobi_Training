@@ -37,6 +37,7 @@
 //     value > 0 && index < arr.length
 // ); // true
 
+////=============================================================
 
 // //sort()
 // const values = [100, 4, 25, 9, 4];
@@ -65,33 +66,113 @@
 // const sortedCopy = [...original].sort((a, b) => a - b);
 // // original remains [3, 1, 2]
 
-//Object and Object Properties
+////==================================================================
+
+// //Object and Object Properties
+// const user = {
+//     name: "Aman",
+//     age: 24,
+//     "home city": "Ayodhya",
+//     isActive: true
+// };
+
+// // Read properties
+// console.log(user.name);        // "Aman"
+// console.log(user["home city"]); // "Ayodhya"
+
+// // Add and update properties
+// user.email = "aman@example.com";
+// user.age = 25;
+
+// // Check whether a property exists directly on the object
+// console.log(Object.hasOwn(user, "name")); // true
+// console.log(Object.hasOwn(user, "phone")); // false
+
+// // Delete a property
+// delete user.isActive;
+
+// // Get keys, values, and key-value pairs
+// console.log(Object.keys(user));
+// console.log(Object.values(user));
+// console.log(Object.entries(user));
+
+// // Destructuring-like property access isn't required to read values
+// console.log("email" in user); // true
+
+////======================================================================
+
+//Object Methods
 const user = {
-    name: "Aman",
-    age: 24,
-    "home city": "Ayodhya",
-    isActive: true
+    id: 101,
+    name: "Ashmit",
+    age: 22,
+    address: {
+        city: "Kanpur",
+        country: "India"
+    },
+    skills: ["JavaScript", "React"]
 };
+// 1. Dot notation
+console.log(user.name); // "Ashmit"
 
-// Read properties
-console.log(user.name);        // "Aman"
-console.log(user["home city"]); // "Ayodhya"
+// 2. Bracket notation
+const key = "age";
+console.log(user[key]); // 22
 
-// Add and update properties
-user.email = "aman@example.com";
-user.age = 25;
+// 3. Add and update properties
+user.email = "ashmit@example.com";
+user.age = 23;
 
-// Check whether a property exists directly on the object
-console.log(Object.hasOwn(user, "name")); // true
-console.log(Object.hasOwn(user, "phone")); // false
+// 4. Delete a property
+delete user.email;
 
-// Delete a property
-delete user.isActive;
+// 5. Check property existence (own + inherited)
+console.log("name" in user); // true
 
-// Get keys, values, and key-value pairs
-console.log(Object.keys(user));
-console.log(Object.values(user));
-console.log(Object.entries(user));
+// 6. Check own property
+console.log(Object.hasOwn(user, "id")); // true
 
-// Destructuring-like property access isn't required to read values
-console.log("email" in user); // true
+// 7. Missing property edge case
+user.nickname = undefined;
+console.log(user.nickname); // undefined
+console.log(Object.hasOwn(user, "nickname")); // true
+console.log(Object.hasOwn(user, "email"));    // false
+
+// 8. Nested properties
+console.log(user.address.city); // "Kanpur"
+
+// 9. Optional chaining
+console.log(user.contact?.email); // undefined
+
+// 10. Object references
+const reference = user;
+reference.age = 24;
+console.log(user.age); // 24
+
+// 11. Destructuring
+const { name, age } = user;
+console.log(name, age); // "Ashmit" 24
+
+// 12. Spread: shallow copy + update
+const updatedUser = { ...user, age: 25 };
+console.log(updatedUser.age); // 25
+console.log(updatedUser !== user); // true
+
+// 13. Computed property names
+const property = "role";
+user[property] = "Developer";
+console.log(user.role); // "Developer"
+
+// 14. Keys, values, and entries
+console.log(Object.keys(user));    // Property names
+console.log(Object.values(user));  // Property values
+console.log(Object.entries(user)); // [key, value] pairs
+
+// 15. Enumeration edge case: own enumerable string keys
+const parent = { countryCode: "IN" };
+const child = Object.create(parent);
+child.name = "Ashmit";
+
+console.log("countryCode" in child);          // true
+console.log(Object.hasOwn(child, "countryCode")); // false
+console.log(Object.keys(child));             // ["name"]
