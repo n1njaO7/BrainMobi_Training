@@ -210,34 +210,70 @@
 // console.log(user.company?.name);         // undefined
 // console.log(user);
 
-//Object And Array Destructuring
+// //Object And Array Destructuring
+// const user = {
+//     name: "Ashmit",
+//     address: {
+//         city: "Kanpur"
+//     },
+//     skills: ["JavaScript", "React", "Node.js"],
+//     projects: [
+//         { name: "Chat App", status: "Completed" },
+//         { name: "E-commerce", status: "In Progress" }
+//     ]
+// };
+
+// // Object destructuring
+// const { name, address } = user;
+
+// // Nested object destructuring
+// const { city } = address;
+
+// // Array destructuring
+// const [firstSkill, secondSkill] = user.skills;
+
+// // Object inside an array
+// const [{ name: projectName, status }] = user.projects;
+
+// console.log(name);        // "Ashmit"
+// console.log(city);        // "Kanpur"
+// console.log(firstSkill);  // "JavaScript"
+// console.log(secondSkill); // "React"
+// console.log(projectName); // "Chat App"
+// console.log(status);      // "Completed"
+
+////===============================================================
+
+
+//Spread and Rest Operators
 const user = {
     name: "Ashmit",
-    address: {
-        city: "Kanpur"
-    },
-    skills: ["JavaScript", "React", "Node.js"],
-    projects: [
-        { name: "Chat App", status: "Completed" },
-        { name: "E-commerce", status: "In Progress" }
-    ]
+    skills: ["JavaScript", "React"]
 };
 
-// Object destructuring
-const { name, address } = user;
+// Spread: copy and update an object
+const updatedUser = { ...user, age: 22 };
 
-// Nested object destructuring
-const { city } = address;
+// Spread: combine arrays
+const allSkills = [...user.skills, "Node.js"];
 
-// Array destructuring
-const [firstSkill, secondSkill] = user.skills;
+// Rest: separate the first skill from the remaining skills
+const [firstSkill, ...otherSkills] = allSkills;
 
-// Object inside an array
-const [{ name: projectName, status }] = user.projects;
+// Rest: collect remaining object properties
+const { name, ...details } = updatedUser;
 
-console.log(name);        // "Ashmit"
-console.log(city);        // "Kanpur"
+// Rest: collect function arguments
+const multiply = (...numbers) =>
+    numbers.reduce((total, num) => total * num, 1);
+
+console.log(updatedUser);
+// { name: "Ashmit", skills: ["JavaScript", "React"], age: 22 }
+
+console.log(allSkills);
+// ["JavaScript", "React", "Node.js"]
+
 console.log(firstSkill);  // "JavaScript"
-console.log(secondSkill); // "React"
-console.log(projectName); // "Chat App"
-console.log(status);      // "Completed"
+console.log(otherSkills); // ["React", "Node.js"]
+console.log(details);     // { skills: ["JavaScript", "React"], age: 22 }
+console.log(multiply(2, 3, 4)); // 24
