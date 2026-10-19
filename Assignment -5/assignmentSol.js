@@ -101,78 +101,111 @@
 
 ////======================================================================
 
-//Object Methods
+// //Object Methods
+// const user = {
+//     id: 101,
+//     name: "Ashmit",
+//     age: 22,
+//     address: {
+//         city: "Kanpur",
+//         country: "India"
+//     },
+//     skills: ["JavaScript", "React"]
+// };
+// // 1. Dot notation
+// console.log(user.name); // "Ashmit"
+
+// // 2. Bracket notation
+// const key = "age";
+// console.log(user[key]); // 22
+
+// // 3. Add and update properties
+// user.email = "ashmit@example.com";
+// user.age = 23;
+
+// // 4. Delete a property
+// delete user.email;
+
+// // 5. Check property existence (own + inherited)
+// console.log("name" in user); // true
+
+// // 6. Check own property
+// console.log(Object.hasOwn(user, "id")); // true
+
+// // 7. Missing property edge case
+// user.nickname = undefined;
+// console.log(user.nickname); // undefined
+// console.log(Object.hasOwn(user, "nickname")); // true
+// console.log(Object.hasOwn(user, "email"));    // false
+
+// // 8. Nested properties
+// console.log(user.address.city); // "Kanpur"
+
+// // 9. Optional chaining
+// console.log(user.contact?.email); // undefined
+
+// // 10. Object references
+// const reference = user;
+// reference.age = 24;
+// console.log(user.age); // 24
+
+// // 11. Destructuring
+// const { name, age } = user;
+// console.log(name, age); // "Ashmit" 24
+
+// // 12. Spread: shallow copy + update
+// const updatedUser = { ...user, age: 25 };
+// console.log(updatedUser.age); // 25
+// console.log(updatedUser !== user); // true
+
+// // 13. Computed property names
+// const property = "role";
+// user[property] = "Developer";
+// console.log(user.role); // "Developer"
+
+// // 14. Keys, values, and entries
+// console.log(Object.keys(user));    // Property names
+// console.log(Object.values(user));  // Property values
+// console.log(Object.entries(user)); // [key, value] pairs
+
+// // 15. Enumeration edge case: own enumerable string keys
+// const parent = { countryCode: "IN" };
+// const child = Object.create(parent);
+// child.name = "Ashmit";
+
+// console.log("countryCode" in child);          // true
+// console.log(Object.hasOwn(child, "countryCode")); // false
+// console.log(Object.keys(child));             // ["name"]
+
+////===============================================================
+
+// Nested Object and Array
 const user = {
-    id: 101,
     name: "Ashmit",
-    age: 22,
+
     address: {
         city: "Kanpur",
-        country: "India"
+        pin: 208001
     },
-    skills: ["JavaScript", "React"]
+
+    skills: ["JavaScript", "React"],
+
+    projects: [
+        { name: "Chat App", status: "Completed" },
+        { name: "E-commerce", status: "In Progress" }
+    ]
 };
-// 1. Dot notation
-console.log(user.name); // "Ashmit"
 
-// 2. Bracket notation
-const key = "age";
-console.log(user[key]); // 22
+console.log(user.address.city);          // "Kanpur"
+console.log(user.skills[0]);             // "JavaScript"
+console.log(user.projects[0].name);      // "Chat App"
+console.log(user.projects[1].status);    // "In Progress"
 
-// 3. Add and update properties
-user.email = "ashmit@example.com";
-user.age = 23;
+// Modify nested values
+user.address.city = "Lucknow";
+user.skills.push("Node.js");
+user.projects[0].status = "Deployed";
 
-// 4. Delete a property
-delete user.email;
-
-// 5. Check property existence (own + inherited)
-console.log("name" in user); // true
-
-// 6. Check own property
-console.log(Object.hasOwn(user, "id")); // true
-
-// 7. Missing property edge case
-user.nickname = undefined;
-console.log(user.nickname); // undefined
-console.log(Object.hasOwn(user, "nickname")); // true
-console.log(Object.hasOwn(user, "email"));    // false
-
-// 8. Nested properties
-console.log(user.address.city); // "Kanpur"
-
-// 9. Optional chaining
-console.log(user.contact?.email); // undefined
-
-// 10. Object references
-const reference = user;
-reference.age = 24;
-console.log(user.age); // 24
-
-// 11. Destructuring
-const { name, age } = user;
-console.log(name, age); // "Ashmit" 24
-
-// 12. Spread: shallow copy + update
-const updatedUser = { ...user, age: 25 };
-console.log(updatedUser.age); // 25
-console.log(updatedUser !== user); // true
-
-// 13. Computed property names
-const property = "role";
-user[property] = "Developer";
-console.log(user.role); // "Developer"
-
-// 14. Keys, values, and entries
-console.log(Object.keys(user));    // Property names
-console.log(Object.values(user));  // Property values
-console.log(Object.entries(user)); // [key, value] pairs
-
-// 15. Enumeration edge case: own enumerable string keys
-const parent = { countryCode: "IN" };
-const child = Object.create(parent);
-child.name = "Ashmit";
-
-console.log("countryCode" in child);          // true
-console.log(Object.hasOwn(child, "countryCode")); // false
-console.log(Object.keys(child));             // ["name"]
+// Safely access a potentially missing property
+console.log(user.company?.name);         // undefined
+console.log(user);
