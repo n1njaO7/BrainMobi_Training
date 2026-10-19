@@ -179,33 +179,65 @@
 
 ////===============================================================
 
-// Nested Object and Array
+// // Nested Object and Array
+// const user = {
+//     name: "Ashmit",
+
+//     address: {
+//         city: "Kanpur",
+//         pin: 208001
+//     },
+
+//     skills: ["JavaScript", "React"],
+
+//     projects: [
+//         { name: "Chat App", status: "Completed" },
+//         { name: "E-commerce", status: "In Progress" }
+//     ]
+// };
+
+// console.log(user.address.city);          // "Kanpur"
+// console.log(user.skills[0]);             // "JavaScript"
+// console.log(user.projects[0].name);      // "Chat App"
+// console.log(user.projects[1].status);    // "In Progress"
+
+// // Modify nested values
+// user.address.city = "Lucknow";
+// user.skills.push("Node.js");
+// user.projects[0].status = "Deployed";
+
+// // Safely access a potentially missing property
+// console.log(user.company?.name);         // undefined
+// console.log(user);
+
+//Object And Array Destructuring
 const user = {
     name: "Ashmit",
-
     address: {
-        city: "Kanpur",
-        pin: 208001
+        city: "Kanpur"
     },
-
-    skills: ["JavaScript", "React"],
-
+    skills: ["JavaScript", "React", "Node.js"],
     projects: [
         { name: "Chat App", status: "Completed" },
         { name: "E-commerce", status: "In Progress" }
     ]
 };
 
-console.log(user.address.city);          // "Kanpur"
-console.log(user.skills[0]);             // "JavaScript"
-console.log(user.projects[0].name);      // "Chat App"
-console.log(user.projects[1].status);    // "In Progress"
+// Object destructuring
+const { name, address } = user;
 
-// Modify nested values
-user.address.city = "Lucknow";
-user.skills.push("Node.js");
-user.projects[0].status = "Deployed";
+// Nested object destructuring
+const { city } = address;
 
-// Safely access a potentially missing property
-console.log(user.company?.name);         // undefined
-console.log(user);
+// Array destructuring
+const [firstSkill, secondSkill] = user.skills;
+
+// Object inside an array
+const [{ name: projectName, status }] = user.projects;
+
+console.log(name);        // "Ashmit"
+console.log(city);        // "Kanpur"
+console.log(firstSkill);  // "JavaScript"
+console.log(secondSkill); // "React"
+console.log(projectName); // "Chat App"
+console.log(status);      // "Completed"
