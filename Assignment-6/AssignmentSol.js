@@ -118,49 +118,95 @@
 
 // //==============================================================================
 
-//4. Higher-Order Functions
-const numbers = [1, 2, 3, 4, 5];
+// //4. Higher-Order Functions
+// const numbers = [1, 2, 3, 4, 5];
 
-function calculate(numbers, operation) {
-    return numbers.map(operation);
+// function calculate(numbers, operation) {
+//     return numbers.map(operation);
+// }
+
+// // A function passed to another function
+// console.log(calculate(numbers, n => n * 2));
+// // [2, 4, 6, 8, 10]
+
+// console.log(numbers.filter(n => n % 2 === 0));
+// // [2, 4]
+
+// console.log(numbers.reduce((sum, n) => sum + n, 0));
+// // 15
+
+// console.log(numbers.some(n => n > 4));
+// // true
+
+// console.log(numbers.every(n => n > 0));
+// // true
+
+// // Empty array edge cases
+// console.log([].some(n => n > 0));  // false
+// console.log([].every(n => n > 0)); // true
+// console.log([].reduce((a, b) => a + b, 0)); // 0
+
+// // Returning a function
+// function multiplier(factor) {
+//     return number => number * factor;
+// }
+
+// const double = multiplier(2);
+// console.log(double(5)); // 10
+
+// // sort() mutates the original array
+// const values = [10, 2, 30];
+// const sorted = [...values].sort((a, b) => a - b);
+
+// console.log(sorted); // [2, 10, 30]
+// console.log(values); // [10, 2, 30]
+
+////=====================================================================================
+
+//5. Lexical Scope
+const message = "Global";
+function outer() {
+    const message = "Outer";
+    let count = 10;
+
+    function inner() {
+        const message = "Inner";
+
+        console.log(message); // Inner
+        console.log(count);   // 10
+    }
+
+    inner();
+    console.log(message); // Outer
+}
+outer();
+console.log(message); // Global
+
+// Lexical scope depends on where a function is defined.
+const value = "Global";
+
+function showValue() {
+    console.log(value);
+}
+function caller() {
+    const value = "Local";
+    showValue();
 }
 
-// A function passed to another function
-console.log(calculate(numbers, n => n * 2));
-// [2, 4, 6, 8, 10]
+caller(); // Global
 
-console.log(numbers.filter(n => n % 2 === 0));
-// [2, 4]
-
-console.log(numbers.reduce((sum, n) => sum + n, 0));
-// 15
-
-console.log(numbers.some(n => n > 4));
-// true
-
-console.log(numbers.every(n => n > 0));
-// true
-
-// Empty array edge cases
-console.log([].some(n => n > 0));  // false
-console.log([].every(n => n > 0)); // true
-console.log([].reduce((a, b) => a + b, 0)); // 0
-
-// Returning a function
-function multiplier(factor) {
-    return number => number * factor;
+// Block scope
+if (true) {
+    let blockValue = 20;
+    var functionValue = 30;
 }
 
-const double = multiplier(2);
-console.log(double(5)); // 10
+// console.log(blockValue); // ReferenceError
+console.log(functionValue); // 30
 
-// sort() mutates the original array
-const values = [10, 2, 30];
-const sorted = [...values].sort((a, b) => a - b);
-
-console.log(sorted); // [2, 10, 30]
-console.log(values); // [10, 2, 30]
-
+// Temporal Dead Zone
+// console.log(age); // ReferenceError
+let age = 22;
 
 
 
