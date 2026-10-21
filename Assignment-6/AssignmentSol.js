@@ -22,51 +22,102 @@
 
 // //=====================================================================
 
-//2. for...in and for...of
-const parent = { country: "India" };
+// //2. for...in and for...of
+// const parent = { country: "India" };
 
-const user = Object.create(parent);
-user.name = "Ashmit";
-user.age = 22;
+// const user = Object.create(parent);
+// user.name = "Ashmit";
+// user.age = 22;
 
-console.log("for...in:");
+// console.log("for...in:");
 
-for (const key in user) {
-    console.log(key, user[key]);
+// for (const key in user) {
+//     console.log(key, user[key]);
+// }
+// // name Ashmit
+// // age 22
+// // country India
+
+// console.log("Own properties only:");
+
+// for (const key in user) {
+//     if (Object.hasOwn(user, key)) {
+//         console.log(key, user[key]);
+//     }
+// }
+// // name Ashmit
+// // age 22
+
+// const skills = ["JavaScript", "Node.js", "React"];
+
+// console.log("for...of:");
+
+// for (const skill of skills) {
+//     console.log(skill);
+// }
+// // JavaScript
+// // Node.js
+// // React
+
+// // Iterating over an ordinary object with for...of throws TypeError.
+// // Use Object.entries() instead.
+// for (const [key, value] of Object.entries(user)) {
+//     console.log(key, value);
+// }
+
+// // Strings are iterable.
+// for (const char of "JS") {
+//     console.log(char); // J, S
+// }
+
+// //===============================================================
+
+//3. Callbacks
+function processUser(name, callback) {
+    console.log(`Processing ${name}`);
+    callback(null, name.toUpperCase());
 }
-// name Ashmit
-// age 22
-// country India
-
-console.log("Own properties only:");
-
-for (const key in user) {
-    if (Object.hasOwn(user, key)) {
-        console.log(key, user[key]);
+processUser("Ashmit", (error, result) => {
+    if (error) {
+        console.log(error.message);
+        return;
     }
+
+    console.log(result);
+});
+// Callback with an error
+function divide(a, b, callback) {
+    if (b === 0) {
+        callback(new Error("Division by zero"), null);
+        return;
+    }
+
+    callback(null, a / b);
 }
-// name Ashmit
-// age 22
-
-const skills = ["JavaScript", "Node.js", "React"];
-
-console.log("for...of:");
-
-for (const skill of skills) {
-    console.log(skill);
+divide(10, 2, (error, result) => {
+    if (error) {
+        console.log(error.message);
+        return;
+    }
+    console.log(result); // 5
+});
+divide(10, 0, (error, result) => {
+    console.log(error?.message ?? result);
+    // Division by zero
+});
+// Passing a function is different from calling it.
+function greet() {
+    console.log("Hello!");
 }
-// JavaScript
-// Node.js
-// React
-
-// Iterating over an ordinary object with for...of throws TypeError.
-// Use Object.entries() instead.
-for (const [key, value] of Object.entries(user)) {
-    console.log(key, value);
+function execute(callback) {
+    callback();
 }
+execute(greet); // Hello!
 
-// Strings are iterable.
-for (const char of "JS") {
-    console.log(char); // J, S
-}
+// execute(greet()) calls greet immediately and passes undefined.
+
+
+
+
+
 
