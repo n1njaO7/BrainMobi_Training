@@ -163,51 +163,110 @@
 
 ////=====================================================================================
 
-//5. Lexical Scope
-const message = "Global";
-function outer() {
-    const message = "Outer";
-    let count = 10;
+// //5. Lexical Scope
+// const message = "Global";
+// function outer() {
+//     const message = "Outer";
+//     let count = 10;
 
-    function inner() {
-        const message = "Inner";
+//     function inner() {
+//         const message = "Inner";
 
-        console.log(message); // Inner
-        console.log(count);   // 10
-    }
+//         console.log(message); // Inner
+//         console.log(count);   // 10
+//     }
 
-    inner();
-    console.log(message); // Outer
+//     inner();
+//     console.log(message); // Outer
+// }
+// outer();
+// console.log(message); // Global
+
+// // Lexical scope depends on where a function is defined.
+// const value = "Global";
+
+// function showValue() {
+//     console.log(value);
+// }
+// function caller() {
+//     const value = "Local";
+//     showValue();
+// }
+
+// caller(); // Global
+
+// // Block scope
+// if (true) {
+//     let blockValue = 20;
+//     var functionValue = 30;
+// }
+
+// // console.log(blockValue); // ReferenceError
+// console.log(functionValue); // 30
+
+// // Temporal Dead Zone
+// // console.log(age); // ReferenceError
+// let age = 22;
+
+////==================================================================================================
+
+//Closures
+function createCounter(initialValue) {
+    let count = initialValue;
+
+    return {
+        increment() {
+            count++;
+            return count;
+        },
+
+        getCount() {
+            return count;
+        }
+    };
 }
-outer();
-console.log(message); // Global
 
-// Lexical scope depends on where a function is defined.
-const value = "Global";
+const counter1 = createCounter(0);
+const counter2 = createCounter(10);
 
-function showValue() {
-    console.log(value);
+console.log(counter1.increment()); // 1
+console.log(counter1.increment()); // 2
+console.log(counter2.increment()); // 11
+
+console.log(counter1.getCount()); // 2
+console.log(counter1.count);      // undefined
+
+// Closures retain variable bindings, not frozen values.
+function createMessage() {
+    let message = "Hello";
+
+    return {
+        show: () => console.log(message),
+        update: value => {
+            message = value;
+        }
+    };
 }
-function caller() {
-    const value = "Local";
-    showValue();
+
+const result = createMessage();
+
+result.update("Welcome");
+result.show(); // Welcome
+
+// var loop problem
+for (var i = 0; i < 3; i++) {
+    setTimeout(() => console.log("var:", i), 0);
 }
+// var: 3
+// var: 3
+// var: 3
 
-caller(); // Global
-
-// Block scope
-if (true) {
-    let blockValue = 20;
-    var functionValue = 30;
+// let creates a separate binding for each iteration
+for (let j = 0; j < 3; j++) {
+    setTimeout(() => console.log("let:", j), 0);
 }
-
-// console.log(blockValue); // ReferenceError
-console.log(functionValue); // 30
-
-// Temporal Dead Zone
-// console.log(age); // ReferenceError
-let age = 22;
-
-
+// let: 0
+// let: 1
+// let: 2
 
 
