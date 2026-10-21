@@ -210,63 +210,121 @@
 
 ////==================================================================================================
 
-//Closures
-function createCounter(initialValue) {
-    let count = initialValue;
+// //Closures
+// function createCounter(initialValue) {
+//     let count = initialValue;
 
-    return {
-        increment() {
-            count++;
-            return count;
-        },
+//     return {
+//         increment() {
+//             count++;
+//             return count;
+//         },
 
-        getCount() {
-            return count;
-        }
-    };
+//         getCount() {
+//             return count;
+//         }
+//     };
+// }
+
+// const counter1 = createCounter(0);
+// const counter2 = createCounter(10);
+
+// console.log(counter1.increment()); // 1
+// console.log(counter1.increment()); // 2
+// console.log(counter2.increment()); // 11
+
+// console.log(counter1.getCount()); // 2
+// console.log(counter1.count);      // undefined
+
+// // Closures retain variable bindings, not frozen values.
+// function createMessage() {
+//     let message = "Hello";
+
+//     return {
+//         show: () => console.log(message),
+//         update: value => {
+//             message = value;
+//         }
+//     };
+// }
+
+// const result = createMessage();
+
+// result.update("Welcome");
+// result.show(); // Welcome
+
+// // var loop problem
+// for (var i = 0; i < 3; i++) {
+//     setTimeout(() => console.log("var:", i), 0);
+// }
+// // var: 3
+// // var: 3
+// // var: 3
+
+// // let creates a separate binding for each iteration
+// for (let j = 0; j < 3; j++) {
+//     setTimeout(() => console.log("let:", j), 0);
+// }
+// // let: 0
+// // let: 1
+// // let: 2
+
+////===============================================================================
+
+//7. this Keyword
+"use strict";
+
+const user = {
+    name: "Ashmit",
+
+    greet() {
+        console.log(this.name);
+    },
+
+    delayedGreet() {
+        setTimeout(() => {
+            console.log(this.name);
+        }, 0);
+    }
+};
+
+user.greet(); // Ashmit
+
+// Arrow functions inherit this from their surrounding scope.
+user.delayedGreet(); // Ashmit (printed asynchronously)
+
+// Detached method loses its original this.
+const greet = user.greet;
+
+// greet(); // TypeError: this is undefined in strict mode
+
+// bind() preserves the intended context.
+const boundGreet = user.greet.bind(user);
+boundGreet(); // Ashmit
+
+// call() and apply()
+function introduce(city, country) {
+    console.log(`${this.name} from ${city}, ${country}`);
 }
 
-const counter1 = createCounter(0);
-const counter2 = createCounter(10);
+introduce.call(user, "Basti", "India");
+introduce.apply(user, ["Basti", "India"]);
+// Ashmit from Basti, India
 
-console.log(counter1.increment()); // 1
-console.log(counter1.increment()); // 2
-console.log(counter2.increment()); // 11
-
-console.log(counter1.getCount()); // 2
-console.log(counter1.count);      // undefined
-
-// Closures retain variable bindings, not frozen values.
-function createMessage() {
-    let message = "Hello";
-
-    return {
-        show: () => console.log(message),
-        update: value => {
-            message = value;
-        }
-    };
+// Constructor and new
+function Person(name) {
+    this.name = name;
 }
 
-const result = createMessage();
+const person = new Person("Rahul");
+console.log(person.name); // Rahul
 
-result.update("Welcome");
-result.show(); // Welcome
+// Arrow functions do not have their own this.
+const arrow = () => console.log(this);
+arrow.call({ name: "Test" }); // Still uses its lexical this
 
-// var loop problem
-for (var i = 0; i < 3; i++) {
-    setTimeout(() => console.log("var:", i), 0);
-}
-// var: 3
-// var: 3
-// var: 3
 
-// let creates a separate binding for each iteration
-for (let j = 0; j < 3; j++) {
-    setTimeout(() => console.log("let:", j), 0);
-}
-// let: 0
-// let: 1
-// let: 2
+
+
 
 
