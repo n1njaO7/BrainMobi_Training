@@ -72,50 +72,94 @@
 
 // //===============================================================
 
-//3. Callbacks
-function processUser(name, callback) {
-    console.log(`Processing ${name}`);
-    callback(null, name.toUpperCase());
-}
-processUser("Ashmit", (error, result) => {
-    if (error) {
-        console.log(error.message);
-        return;
-    }
+// //3. Callbacks
+// function processUser(name, callback) {
+//     console.log(`Processing ${name}`);
+//     callback(null, name.toUpperCase());
+// }
+// processUser("Ashmit", (error, result) => {
+//     if (error) {
+//         console.log(error.message);
+//         return;
+//     }
 
-    console.log(result);
-});
-// Callback with an error
-function divide(a, b, callback) {
-    if (b === 0) {
-        callback(new Error("Division by zero"), null);
-        return;
-    }
+//     console.log(result);
+// });
+// // Callback with an error
+// function divide(a, b, callback) {
+//     if (b === 0) {
+//         callback(new Error("Division by zero"), null);
+//         return;
+//     }
 
-    callback(null, a / b);
-}
-divide(10, 2, (error, result) => {
-    if (error) {
-        console.log(error.message);
-        return;
-    }
-    console.log(result); // 5
-});
-divide(10, 0, (error, result) => {
-    console.log(error?.message ?? result);
-    // Division by zero
-});
-// Passing a function is different from calling it.
-function greet() {
-    console.log("Hello!");
-}
-function execute(callback) {
-    callback();
-}
-execute(greet); // Hello!
+//     callback(null, a / b);
+// }
+// divide(10, 2, (error, result) => {
+//     if (error) {
+//         console.log(error.message);
+//         return;
+//     }
+//     console.log(result); // 5
+// });
+// divide(10, 0, (error, result) => {
+//     console.log(error?.message ?? result);
+//     // Division by zero
+// });
+// // Passing a function is different from calling it.
+// function greet() {
+//     console.log("Hello!");
+// }
+// function execute(callback) {
+//     callback();
+// }
+// execute(greet); // Hello!
 
-// execute(greet()) calls greet immediately and passes undefined.
+// // execute(greet()) calls greet immediately and passes undefined.
 
+// //==============================================================================
+
+//4. Higher-Order Functions
+const numbers = [1, 2, 3, 4, 5];
+
+function calculate(numbers, operation) {
+    return numbers.map(operation);
+}
+
+// A function passed to another function
+console.log(calculate(numbers, n => n * 2));
+// [2, 4, 6, 8, 10]
+
+console.log(numbers.filter(n => n % 2 === 0));
+// [2, 4]
+
+console.log(numbers.reduce((sum, n) => sum + n, 0));
+// 15
+
+console.log(numbers.some(n => n > 4));
+// true
+
+console.log(numbers.every(n => n > 0));
+// true
+
+// Empty array edge cases
+console.log([].some(n => n > 0));  // false
+console.log([].every(n => n > 0)); // true
+console.log([].reduce((a, b) => a + b, 0)); // 0
+
+// Returning a function
+function multiplier(factor) {
+    return number => number * factor;
+}
+
+const double = multiplier(2);
+console.log(double(5)); // 10
+
+// sort() mutates the original array
+const values = [10, 2, 30];
+const sorted = [...values].sort((a, b) => a - b);
+
+console.log(sorted); // [2, 10, 30]
+console.log(values); // [10, 2, 30]
 
 
 
