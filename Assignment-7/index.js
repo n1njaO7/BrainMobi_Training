@@ -87,39 +87,88 @@
 
 // //=========================================================================
 
-//4. Lexical Environment
-const globalMessage = "Global";
+// //4. Lexical Environment
+// const globalMessage = "Global";
 
-function outer() {
-    const outerMessage = "Outer";
+// function outer() {
+//     const outerMessage = "Outer";
 
-    function inner() {
-        const innerMessage = "Inner";
+//     function inner() {
+//         const innerMessage = "Inner";
 
-        console.log(innerMessage); // Inner
-        console.log(outerMessage); // Outer
-        console.log(globalMessage); // Global
-    }
+//         console.log(innerMessage); // Inner
+//         console.log(outerMessage); // Outer
+//         console.log(globalMessage); // Global
+//     }
 
-    inner();
-}
+//     inner();
+// }
 
-outer();
+// outer();
 
-// Variable shadowing
-const value = "Global value";
+// // Variable shadowing
+// const value = "Global value";
 
-function showValue() {
-    const value = "Local value";
-    console.log(value); // Local value
-}
+// function showValue() {
+//     const value = "Local value";
+//     console.log(value); // Local value
+// }
 
-showValue();
-console.log(value); // Global value
+// showValue();
+// console.log(value); // Global value
 
-// Temporal Dead Zone
-{
-    // console.log(age); // ReferenceError
-    let age = 22;
-    console.log(age); // 22
-}
+// // Temporal Dead Zone
+// {
+//     // console.log(age); // ReferenceError
+//     let age = 22;
+//     console.log(age); // 22
+// }
+
+// //===========================================================================
+
+//6. Shallow Copy vs Deep Copy
+const original = {
+    name: "Ashmit",
+    address: {
+        city: "Basti"
+    },
+    skills: ["JavaScript", "React"]
+};
+
+// Shallow copy using spread syntax
+const shallow = { ...original };
+
+shallow.name = "Rahul";
+shallow.address.city = "Delhi";
+shallow.skills.push("Node.js");
+
+console.log(original.name);           // Ashmit
+console.log(original.address.city);   // Delhi
+console.log(original.skills);         // ["JavaScript", "React", "Node.js"]
+
+// Deep copy using structuredClone()
+const deep = structuredClone(original);
+
+deep.name = "Aman";
+deep.address.city = "Lucknow";
+deep.skills.push("MongoDB");
+
+console.log(original.name);         // Ashmit
+console.log(original.address.city); // Delhi
+console.log(original.skills);       // ["JavaScript", "React", "Node.js"]
+
+console.log(deep.name);         // Aman
+console.log(deep.address.city); // Lucknow
+console.log(deep.skills);       // ["JavaScript", "React", "Node.js", "MongoDB"]
+
+// JSON-based copying has limitations.
+const data = {
+    date: new Date("2025-01-01"),
+    value: undefined
+};
+
+const jsonCopy = JSON.parse(JSON.stringify(data));
+
+console.log(jsonCopy.date);  // String, not Date
+console.log(jsonCopy.value); // undefined property is omitted
+
