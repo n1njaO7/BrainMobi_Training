@@ -37,22 +37,50 @@
 
 // //==========================================================================================
 
-//2. Execution Context
-var globalValue = 10;
-let globalName = "Ashmit";
+// //2. Execution Context
+// var globalValue = 10;
+// let globalName = "Ashmit";
 
-function outer() {
-    var outerValue = 20;
+// function outer() {
+//     var outerValue = 20;
 
-    function inner() {
-        let innerValue = 30;
+//     function inner() {
+//         let innerValue = 30;
 
-        console.log(globalValue); // 10
-        console.log(outerValue);  // 20
-        console.log(innerValue);  // 30
-    }
+//         console.log(globalValue); // 10
+//         console.log(outerValue);  // 20
+//         console.log(innerValue);  // 30
+//     }
 
-    inner();
+//     inner();
+// }
+
+// outer();
+
+// //=======================================================================
+
+//3. Call Stack
+function first() {
+    console.log("First starts");
+    second();
+    console.log("First ends");
 }
 
-outer();
+function second() {
+    console.log("Second starts");
+    third();
+    console.log("Second ends");
+}
+
+function third() {
+    console.log("Third executes");
+}
+
+first();
+
+// Output:
+// First starts
+// Second starts
+// Third executes
+// Second ends
+// First ends
