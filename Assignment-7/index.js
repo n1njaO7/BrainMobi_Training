@@ -59,28 +59,67 @@
 
 // //=======================================================================
 
-//3. Call Stack
-function first() {
-    console.log("First starts");
-    second();
-    console.log("First ends");
+// //3. Call Stack
+// function first() {
+//     console.log("First starts");
+//     second();
+//     console.log("First ends");
+// }
+
+// function second() {
+//     console.log("Second starts");
+//     third();
+//     console.log("Second ends");
+// }
+
+// function third() {
+//     console.log("Third executes");
+// }
+
+// first();
+
+// // Output:
+// // First starts
+// // Second starts
+// // Third executes
+// // Second ends
+// // First ends
+
+// //=========================================================================
+
+//4. Lexical Environment
+const globalMessage = "Global";
+
+function outer() {
+    const outerMessage = "Outer";
+
+    function inner() {
+        const innerMessage = "Inner";
+
+        console.log(innerMessage); // Inner
+        console.log(outerMessage); // Outer
+        console.log(globalMessage); // Global
+    }
+
+    inner();
 }
 
-function second() {
-    console.log("Second starts");
-    third();
-    console.log("Second ends");
+outer();
+
+// Variable shadowing
+const value = "Global value";
+
+function showValue() {
+    const value = "Local value";
+    console.log(value); // Local value
 }
 
-function third() {
-    console.log("Third executes");
+showValue();
+console.log(value); // Global value
+
+// Temporal Dead Zone
+{
+    // console.log(age); // ReferenceError
+    let age = 22;
+    console.log(age); // 22
 }
-
-first();
-
-// Output:
-// First starts
-// Second starts
-// Third executes
-// Second ends
-// First ends
