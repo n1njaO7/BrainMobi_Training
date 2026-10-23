@@ -169,40 +169,88 @@
 
 // // ================================================================================
 
-// Synchronous vs Asynchronous JavaScript
-console.log("1. Start");
+// // Synchronous vs Asynchronous JavaScript
+// console.log("1. Start");
 
-// Synchronous operation
-function calculate() {
-    let sum = 0;
+// // Synchronous operation
+// function calculate() {
+//     let sum = 0;
 
-    for (let i = 1; i <= 3; i++) {
-        sum += i;
+//     for (let i = 1; i <= 3; i++) {
+//         sum += i;
+//     }
+
+//     console.log("2. Sum:", sum);
+// }
+
+// calculate();
+
+// // Asynchronous timer callback
+// setTimeout(() => {
+//     console.log("5. Timer callback");
+// }, 0);
+
+// // Promise callback (microtask)
+// Promise.resolve().then(() => {
+//     console.log("4. Promise callback");
+// });
+
+// console.log("3. End");
+
+// // Output:
+// // 1. Start
+// // 2. Sum: 6
+// // 3. End
+// // 4. Promise callback
+// // 5. Timer callback
+
+//==============================================================
+
+//setTimeout() and setInterval()
+// 1. setTimeout(): runs once
+const timeoutId = setTimeout(() => {
+    console.log("Timeout executed");
+}, 1000);
+
+// Cancel before it executes if necessary
+// clearTimeout(timeoutId);
+
+// 2. setInterval(): repeats
+let count = 0;
+
+const intervalId = setInterval(() => {
+    count++;
+    console.log("Count:", count);
+
+    if (count === 3) {
+        clearInterval(intervalId);
+        console.log("Interval stopped");
     }
+}, 1000);
 
-    console.log("2. Sum:", sum);
-}
+// 3. A zero-delay timeout is still asynchronous
+console.log("Start");
 
-calculate();
-
-// Asynchronous timer callback
 setTimeout(() => {
-    console.log("5. Timer callback");
+    console.log("Zero-delay timer");
 }, 0);
 
-// Promise callback (microtask)
-Promise.resolve().then(() => {
-    console.log("4. Promise callback");
-});
+console.log("End");
 
-console.log("3. End");
+// Start
+// End
+// Zero-delay timer
 
-// Output:
-// 1. Start
-// 2. Sum: 6
-// 3. End
-// 4. Promise callback
-// 5. Timer callback
+// 4. Timers can be delayed by blocking work
+setTimeout(() => {
+    console.log("Runs after blocking work");
+}, 0);
+
+const start = Date.now();
+
+while (Date.now() - start < 100) {
+    // Blocks the JavaScript thread for approximately 100 ms.
+}
 
 
 
