@@ -118,54 +118,93 @@
 
 // //========================================================================================
 
-//C.Strict Mode
-"use strict";
+// //C.Strict Mode
+// "use strict";
 
-// 1. Undeclared variable assignment is not allowed
-try {
-    // accidentalVariable = 10;
-} catch (error) {
-    console.log(error.name);
-    // ReferenceError if the assignment is executed
+// // 1. Undeclared variable assignment is not allowed
+// try {
+//     // accidentalVariable = 10;
+// } catch (error) {
+//     console.log(error.name);
+//     // ReferenceError if the assignment is executed
+// }
+
+// // 2. Duplicate parameter names are not allowed
+// // function add(a, a) {} // SyntaxError in strict mode
+
+// // 3. Plain function call has undefined as this
+// function showThis() {
+//     console.log(this);
+// }
+
+// showThis(); // undefined
+
+// // 4. Writing to a non-writable property throws an error
+// const user = {};
+
+// Object.defineProperty(user, "name", {
+//     value: "Ashmit",
+//     writable: false
+// });
+
+// try {
+//     user.name = "Rahul";
+// } catch (error) {
+//     console.log(error.name); // TypeError
+// }
+
+// // 5. Deleting a variable is not allowed
+// // delete user; // SyntaxError
+
+// // Deleting a configurable property is allowed
+// Object.defineProperty(user, "age", {
+//     value: 22,
+//     configurable: true
+// });
+
+// console.log(delete user.age); // true
+
+// // 6. Strict mode prevents some silent failures
+// console.log(user.name); // Ashmit
+
+// // ================================================================================
+
+// Synchronous vs Asynchronous JavaScript
+console.log("1. Start");
+
+// Synchronous operation
+function calculate() {
+    let sum = 0;
+
+    for (let i = 1; i <= 3; i++) {
+        sum += i;
+    }
+
+    console.log("2. Sum:", sum);
 }
 
-// 2. Duplicate parameter names are not allowed
-// function add(a, a) {} // SyntaxError in strict mode
+calculate();
 
-// 3. Plain function call has undefined as this
-function showThis() {
-    console.log(this);
-}
+// Asynchronous timer callback
+setTimeout(() => {
+    console.log("5. Timer callback");
+}, 0);
 
-showThis(); // undefined
-
-// 4. Writing to a non-writable property throws an error
-const user = {};
-
-Object.defineProperty(user, "name", {
-    value: "Ashmit",
-    writable: false
+// Promise callback (microtask)
+Promise.resolve().then(() => {
+    console.log("4. Promise callback");
 });
 
-try {
-    user.name = "Rahul";
-} catch (error) {
-    console.log(error.name); // TypeError
-}
+console.log("3. End");
 
-// 5. Deleting a variable is not allowed
-// delete user; // SyntaxError
+// Output:
+// 1. Start
+// 2. Sum: 6
+// 3. End
+// 4. Promise callback
+// 5. Timer callback
 
-// Deleting a configurable property is allowed
-Object.defineProperty(user, "age", {
-    value: 22,
-    configurable: true
-});
 
-console.log(delete user.age); // true
-
-// 6. Strict mode prevents some silent failures
-console.log(user.name); // Ashmit
 
 
 
