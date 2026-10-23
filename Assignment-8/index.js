@@ -204,56 +204,89 @@
 // // 4. Promise callback
 // // 5. Timer callback
 
-//==============================================================
+// //==============================================================
 
-//setTimeout() and setInterval()
-// 1. setTimeout(): runs once
-const timeoutId = setTimeout(() => {
-    console.log("Timeout executed");
-}, 1000);
+// //D.setTimeout() and setInterval()
+// // 1. setTimeout(): runs once
+// const timeoutId = setTimeout(() => {
+//     console.log("Timeout executed");
+// }, 1000);
 
-// Cancel before it executes if necessary
-// clearTimeout(timeoutId);
+// // Cancel before it executes if necessary
+// // clearTimeout(timeoutId);
 
-// 2. setInterval(): repeats
-let count = 0;
+// // 2. setInterval(): repeats
+// let count = 0;
 
-const intervalId = setInterval(() => {
-    count++;
-    console.log("Count:", count);
+// const intervalId = setInterval(() => {
+//     count++;
+//     console.log("Count:", count);
 
-    if (count === 3) {
-        clearInterval(intervalId);
-        console.log("Interval stopped");
-    }
-}, 1000);
+//     if (count === 3) {
+//         clearInterval(intervalId);
+//         console.log("Interval stopped");
+//     }
+// }, 1000);
 
-// 3. A zero-delay timeout is still asynchronous
-console.log("Start");
+// // 3. A zero-delay timeout is still asynchronous
+// console.log("Start");
+
+// setTimeout(() => {
+//     console.log("Zero-delay timer");
+// }, 0);
+
+// console.log("End");
+
+// // Start
+// // End
+// // Zero-delay timer
+
+// // 4. Timers can be delayed by blocking work
+// setTimeout(() => {
+//     console.log("Runs after blocking work");
+// }, 0);
+
+// const start = Date.now();
+
+// while (Date.now() - start < 100) {
+//     // Blocks the JavaScript thread for approximately 100 ms.
+// }
+
+// //====================================================================
+
+//E. Event Loop
+console.log("1. Synchronous start");
 
 setTimeout(() => {
-    console.log("Zero-delay timer");
+    console.log("5. Timer callback");
+
+    Promise.resolve().then(() => {
+        console.log("6. Promise inside timer");
+    });
 }, 0);
 
-console.log("End");
+Promise.resolve().then(() => {
+    console.log("3. First promise");
 
-// Start
-// End
-// Zero-delay timer
+    queueMicrotask(() => {
+        console.log("4. Nested microtask");
+    });
+});
 
-// 4. Timers can be delayed by blocking work
-setTimeout(() => {
-    console.log("Runs after blocking work");
-}, 0);
+queueMicrotask(() => {
+    console.log("Another microtask");
+});
 
-const start = Date.now();
+console.log("2. Synchronous end");
 
-while (Date.now() - start < 100) {
-    // Blocks the JavaScript thread for approximately 100 ms.
-}
-
-
-
+// Typical browser output:
+// 1. Synchronous start
+// 2. Synchronous end
+// 3. First promise
+// Another microtask
+// 4. Nested microtask
+// 5. Timer callback
+// 6. Promise inside timer
 
 
 
