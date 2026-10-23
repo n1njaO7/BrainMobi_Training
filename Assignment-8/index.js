@@ -60,63 +60,112 @@
 
 // //==========================================================================
 
-//B. Recursion
-// 1. Factorial using recursion
-function factorial(n) {
-    if (!Number.isInteger(n) || n < 0) {
-        throw new Error("Input must be a non-negative integer");
-    }
+// //B. Recursion
+// // 1. Factorial using recursion
+// function factorial(n) {
+//     if (!Number.isInteger(n) || n < 0) {
+//         throw new Error("Input must be a non-negative integer");
+//     }
 
-    if (n <= 1) return 1; // Base case
+//     if (n <= 1) return 1; // Base case
 
-    return n * factorial(n - 1);
+//     return n * factorial(n - 1);
+// }
+
+// console.log(factorial(5)); // 120
+// console.log(factorial(0)); // 1
+
+// // 2. Recursive sum of an array
+// function sumArray(arr, index = 0) {
+//     if (index >= arr.length) return 0;
+
+//     return arr[index] + sumArray(arr, index + 1);
+// }
+
+// console.log(sumArray([10, 20, 30])); // 60
+// console.log(sumArray([]));            // 0
+
+// // 3. Recursive traversal of nested objects
+// function printValues(obj) {
+//     for (const value of Object.values(obj)) {
+//         if (
+//             value !== null &&
+//             typeof value === "object" &&
+//             !Array.isArray(value)
+//         ) {
+//             printValues(value);
+//         } else {
+//             console.log(value);
+//         }
+//     }
+// }
+
+// printValues({
+//     name: "Ashmit",
+//     address: { city: "Basti" }
+// });
+
+// // Ashmit
+// // Basti
+
+// // 4. Missing base case can cause stack overflow
+// function infiniteRecursion() {
+//     infiniteRecursion();
+// }
+
+// // infiniteRecursion();
+// // Eventually throws RangeError: Maximum call stack size exceeded
+
+// //========================================================================================
+
+//C.Strict Mode
+"use strict";
+
+// 1. Undeclared variable assignment is not allowed
+try {
+    // accidentalVariable = 10;
+} catch (error) {
+    console.log(error.name);
+    // ReferenceError if the assignment is executed
 }
 
-console.log(factorial(5)); // 120
-console.log(factorial(0)); // 1
+// 2. Duplicate parameter names are not allowed
+// function add(a, a) {} // SyntaxError in strict mode
 
-// 2. Recursive sum of an array
-function sumArray(arr, index = 0) {
-    if (index >= arr.length) return 0;
-
-    return arr[index] + sumArray(arr, index + 1);
+// 3. Plain function call has undefined as this
+function showThis() {
+    console.log(this);
 }
 
-console.log(sumArray([10, 20, 30])); // 60
-console.log(sumArray([]));            // 0
+showThis(); // undefined
 
-// 3. Recursive traversal of nested objects
-function printValues(obj) {
-    for (const value of Object.values(obj)) {
-        if (
-            value !== null &&
-            typeof value === "object" &&
-            !Array.isArray(value)
-        ) {
-            printValues(value);
-        } else {
-            console.log(value);
-        }
-    }
-}
+// 4. Writing to a non-writable property throws an error
+const user = {};
 
-printValues({
-    name: "Ashmit",
-    address: { city: "Basti" }
+Object.defineProperty(user, "name", {
+    value: "Ashmit",
+    writable: false
 });
 
-// Ashmit
-// Basti
-
-// 4. Missing base case can cause stack overflow
-function infiniteRecursion() {
-    infiniteRecursion();
+try {
+    user.name = "Rahul";
+} catch (error) {
+    console.log(error.name); // TypeError
 }
 
-// infiniteRecursion();
-// Eventually throws RangeError: Maximum call stack size exceeded
+// 5. Deleting a variable is not allowed
+// delete user; // SyntaxError
 
+// Deleting a configurable property is allowed
+Object.defineProperty(user, "age", {
+    value: 22,
+    configurable: true
+});
 
+console.log(delete user.age); // true
+
+// 6. Strict mode prevents some silent failures
+console.log(user.name); // Ashmit
 
 
 
