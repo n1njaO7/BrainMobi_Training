@@ -178,52 +178,110 @@
 
 // //=========================================================
 
-//6. Promise Chaining
-function getUser() {
-    return Promise.resolve({
-        id: 1,
-        name: "Ashmit"
+// //6. Promise Chaining
+// function getUser() {
+//     return Promise.resolve({
+//         id: 1,
+//         name: "Ashmit"
+//     });
+// }
+
+// function getOrders(userId) {
+//     return Promise.resolve([
+//         { id: 101, userId, total: 500 },
+//         { id: 102, userId, total: 800 }
+//     ]);
+// }
+
+// getUser()
+//     .then(user => {
+//         console.log("User:", user.name);
+//         return getOrders(user.id);
+//     })
+//     .then(orders => {
+//         console.log("Orders:", orders.length);
+
+//         return orders.reduce(
+//             (total, order) => total + order.total,
+//             0
+//         );
+//     })
+//     .then(total => {
+//         console.log("Total:", total); // 1300
+//         return total * 1.18;
+//     })
+//     .then(totalWithTax => {
+//         console.log("Total with tax:", totalWithTax); // 1534
+//     })
+//     .catch(error => {
+//         console.error("Operation failed:", error.message);
+//     });
+
+// // Incorrect chaining: missing return
+// getUser()
+//     .then(user => {
+//         getOrders(user.id); // Promise is not returned
+//     })
+//     .then(result => {
+//         console.log(result); // undefined
+//     });
+
+// //=======================================================================    
+
+//7. async, await, and Error Handling with try...catch
+function fetchUser(id) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            if (id <= 0) {
+                reject(new Error("Invalid user ID"));
+                return;
+            }
+
+            resolve({
+                id,
+                name: "Ashmit"
+            });
+        }, 300);
     });
 }
 
-function getOrders(userId) {
-    return Promise.resolve([
-        { id: 101, userId, total: 500 },
-        { id: 102, userId, total: 800 }
-    ]);
-}
+async function getUserDetails(id) {
+    try {
+        console.log("Fetching user...");
 
-getUser()
-    .then(user => {
+        const user = await fetchUser(id);
         console.log("User:", user.name);
-        return getOrders(user.id);
-    })
-    .then(orders => {
-        console.log("Orders:", orders.length);
 
-        return orders.reduce(
-            (total, order) => total + order.total,
-            0
-        );
-    })
-    .then(total => {
-        console.log("Total:", total); // 1300
-        return total * 1.18;
-    })
-    .then(totalWithTax => {
-        console.log("Total with tax:", totalWithTax); // 1534
-    })
-    .catch(error => {
-        console.error("Operation failed:", error.message);
-    });
+        return user;
+    } catch (error) {
+        console.error("Error:", error.message);
+        return null;
+    } finally {
+        console.log("Request completed");
+    }
+}
 
-// Incorrect chaining: missing return
-getUser()
-    .then(user => {
-        getOrders(user.id); // Promise is not returned
-    })
-    .then(result => {
-        console.log(result); // undefined
-    });
+getUserDetails(1).then(result => {
+    console.log("Returned:", result);
+});
 
-    
+getUserDetails(0).then(result => {
+    console.log("Returned:", result); // null
+});
+
+// Handling a rejected async function
+async function divide(a, b) {
+    if (b === 0) {
+        throw new Error("Cannot divide by zero");
+    }
+
+    return a / b;
+}
+
+divide(10, 2).then(console.log); // 5
+
+divide(10, 0).catch(error => {
+    console.log(error.message);
+    // Cannot divide by zero
+});
+
