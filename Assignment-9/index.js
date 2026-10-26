@@ -70,46 +70,79 @@
 
 // //===========================================================
 
-//3. Promises
-function fetchUser(id) {
-    return new Promise((resolve, reject) => {
-        if (id <= 0) {
-            reject(new Error("Invalid user ID"));
-            return;
-        }
+// //3. Promises
+// function fetchUser(id) {
+//     return new Promise((resolve, reject) => {
+//         if (id <= 0) {
+//             reject(new Error("Invalid user ID"));
+//             return;
+//         }
 
-        // Simulates an asynchronous operation.
-        setTimeout(() => {
-            resolve({
-                id,
-                name: "Ashmit"
-            });
-        }, 500);
-    });
-}
+//         // Simulates an asynchronous operation.
+//         setTimeout(() => {
+//             resolve({
+//                 id,
+//                 name: "Ashmit"
+//             });
+//         }, 500);
+//     });
+// }
 
-fetchUser(1)
-    .then(user => {
-        console.log("User:", user);
-        return user.name;
-    })
-    .then(name => {
-        console.log("Name:", name);
-    })
-    .catch(error => {
-        console.error("Error:", error.message);
-    });
+// fetchUser(1)
+//     .then(user => {
+//         console.log("User:", user);
+//         return user.name;
+//     })
+//     .then(name => {
+//         console.log("Name:", name);
+//     })
+//     .catch(error => {
+//         console.error("Error:", error.message);
+//     });
 
-// Invalid ID example
-fetchUser(0)
-    .then(user => console.log(user))
-    .catch(error => console.error(error.message));
+// // Invalid ID example
+// fetchUser(0)
+//     .then(user => console.log(user))
+//     .catch(error => console.error(error.message));
 
-// Output includes:
-// Error: Invalid user ID
-// User: { id: 1, name: 'Ashmit' }
-// Name: Ashmit
+// // Output includes:
+// // Error: Invalid user ID
+// // User: { id: 1, name: 'Ashmit' }
+// // Name: Ashmit
 
+// //====================================================================
 
+//4. Promise States
+const pendingPromise = new Promise(() => {
+    // Neither resolve nor reject is called.
+});
 
+const fulfilledPromise = Promise.resolve("Success");
+
+const rejectedPromise = Promise.reject(
+    new Error("Something went wrong")
+);
+
+pendingPromise.then(
+    value => console.log(value),
+    error => console.log(error)
+);
+// No output: remains pending.
+
+fulfilledPromise.then(value => {
+    console.log(value); // Success
+});
+
+rejectedPromise.catch(error => {
+    console.log(error.message); // Something went wrong
+});
+
+// Only the first settlement takes effect.
+const promise = new Promise((resolve, reject) => {
+    resolve("First result");
+    reject(new Error("Ignored rejection"));
+});
+
+promise.then(value => console.log(value));
+// First result
 
