@@ -148,30 +148,82 @@
 
 // //====================================================================
 
-//5. .then(), .catch(), and .finally()
-Promise.resolve(10)
-    .then(value => {
-        console.log("Value:", value); // 10
-        return value * 2;
+// //5. .then(), .catch(), and .finally()
+// Promise.resolve(10)
+//     .then(value => {
+//         console.log("Value:", value); // 10
+//         return value * 2;
+//     })
+//     .then(value => {
+//         console.log("Doubled:", value); // 20
+//         throw new Error("Processing failed");
+//     })
+//     .catch(error => {
+//         console.log("Caught:", error.message);
+//         return "Recovered";
+//     })
+//     .finally(() => {
+//         console.log("Cleanup completed");
+//     })
+//     .then(result => {
+//         console.log("Final result:", result);
+//     });
+
+// // Output:
+// // Value: 10
+// // Doubled: 20
+// // Caught: Processing failed
+// // Cleanup completed
+// // Final result: Recovered
+
+// //=========================================================
+
+//6. Promise Chaining
+function getUser() {
+    return Promise.resolve({
+        id: 1,
+        name: "Ashmit"
+    });
+}
+
+function getOrders(userId) {
+    return Promise.resolve([
+        { id: 101, userId, total: 500 },
+        { id: 102, userId, total: 800 }
+    ]);
+}
+
+getUser()
+    .then(user => {
+        console.log("User:", user.name);
+        return getOrders(user.id);
     })
-    .then(value => {
-        console.log("Doubled:", value); // 20
-        throw new Error("Processing failed");
+    .then(orders => {
+        console.log("Orders:", orders.length);
+
+        return orders.reduce(
+            (total, order) => total + order.total,
+            0
+        );
+    })
+    .then(total => {
+        console.log("Total:", total); // 1300
+        return total * 1.18;
+    })
+    .then(totalWithTax => {
+        console.log("Total with tax:", totalWithTax); // 1534
     })
     .catch(error => {
-        console.log("Caught:", error.message);
-        return "Recovered";
-    })
-    .finally(() => {
-        console.log("Cleanup completed");
-    })
-    .then(result => {
-        console.log("Final result:", result);
+        console.error("Operation failed:", error.message);
     });
 
-// Output:
-// Value: 10
-// Doubled: 20
-// Caught: Processing failed
-// Cleanup completed
-// Final result: Recovered
+// Incorrect chaining: missing return
+getUser()
+    .then(user => {
+        getOrders(user.id); // Promise is not returned
+    })
+    .then(result => {
+        console.log(result); // undefined
+    });
+
+    
