@@ -112,37 +112,66 @@
 
 // //====================================================================
 
-//4. Promise States
-const pendingPromise = new Promise(() => {
-    // Neither resolve nor reject is called.
-});
+// //4. Promise States
+// const pendingPromise = new Promise(() => {
+//     // Neither resolve nor reject is called.
+// });
 
-const fulfilledPromise = Promise.resolve("Success");
+// const fulfilledPromise = Promise.resolve("Success");
 
-const rejectedPromise = Promise.reject(
-    new Error("Something went wrong")
-);
+// const rejectedPromise = Promise.reject(
+//     new Error("Something went wrong")
+// );
 
-pendingPromise.then(
-    value => console.log(value),
-    error => console.log(error)
-);
-// No output: remains pending.
+// pendingPromise.then(
+//     value => console.log(value),
+//     error => console.log(error)
+// );
+// // No output: remains pending.
 
-fulfilledPromise.then(value => {
-    console.log(value); // Success
-});
+// fulfilledPromise.then(value => {
+//     console.log(value); // Success
+// });
 
-rejectedPromise.catch(error => {
-    console.log(error.message); // Something went wrong
-});
+// rejectedPromise.catch(error => {
+//     console.log(error.message); // Something went wrong
+// });
 
-// Only the first settlement takes effect.
-const promise = new Promise((resolve, reject) => {
-    resolve("First result");
-    reject(new Error("Ignored rejection"));
-});
+// // Only the first settlement takes effect.
+// const promise = new Promise((resolve, reject) => {
+//     resolve("First result");
+//     reject(new Error("Ignored rejection"));
+// });
 
-promise.then(value => console.log(value));
-// First result
+// promise.then(value => console.log(value));
+// // First result
 
+// //====================================================================
+
+//5. .then(), .catch(), and .finally()
+Promise.resolve(10)
+    .then(value => {
+        console.log("Value:", value); // 10
+        return value * 2;
+    })
+    .then(value => {
+        console.log("Doubled:", value); // 20
+        throw new Error("Processing failed");
+    })
+    .catch(error => {
+        console.log("Caught:", error.message);
+        return "Recovered";
+    })
+    .finally(() => {
+        console.log("Cleanup completed");
+    })
+    .then(result => {
+        console.log("Final result:", result);
+    });
+
+// Output:
+// Value: 10
+// Doubled: 20
+// Caught: Processing failed
+// Cleanup completed
+// Final result: Recovered
