@@ -184,66 +184,105 @@
 
 // //==================================================================================================================
 
-//5. ES6 Features Overview
-// 1. let and const
-const company = "BrainMobi";
-let employeeCount = 10;
+// //5. ES6 Features Overview
+// // 1. let and const
+// const company = "BrainMobi";
+// let employeeCount = 10;
 
-employeeCount++;
+// employeeCount++;
 
-// 2. Arrow function
-const add = (a, b) => a + b;
+// // 2. Arrow function
+// const add = (a, b) => a + b;
 
-// 3. Template literals
-const message = `Welcome to ${company}!`;
+// // 3. Template literals
+// const message = `Welcome to ${company}!`;
 
-// 4. Destructuring
-const user = {
-    name: "Ashmit",
-    role: "Developer"
-};
+// // 4. Destructuring
+// const user = {
+//     name: "Ashmit",
+//     role: "Developer"
+// };
 
-const { name, role } = user;
+// const { name, role } = user;
 
-// 5. Spread operator
-const originalSkills = ["JavaScript", "React"];
-const skills = [...originalSkills, "Node.js"];
+// // 5. Spread operator
+// const originalSkills = ["JavaScript", "React"];
+// const skills = [...originalSkills, "Node.js"];
 
-// 6. Rest parameters
-function sum(...numbers) {
-    return numbers.reduce((total, number) => total + number, 0);
+// // 6. Rest parameters
+// function sum(...numbers) {
+//     return numbers.reduce((total, number) => total + number, 0);
+// }
+
+// // 7. Default parameters
+// function greet(person = "Guest") {
+//     return `Hello, ${person}`;
+// }
+
+// // 8. Classes
+// class Developer {
+//     constructor(name) {
+//         this.name = name;
+//     }
+
+//     introduce() {
+//         return `I am ${this.name}`;
+//     }
+// }
+
+// // 9. Map and Set
+// const scores = new Map([["Ashmit", 90]]);
+// const uniqueNumbers = new Set([1, 1, 2, 3]);
+
+// // 10. Promise
+// const result = Promise.resolve("Success");
+
+// console.log(message);     //Welcome to BrainMobi!
+// console.log(add(2, 3));   //5
+// console.log(name, role);  //Ashmit Developer
+// console.log(skills);      //[ 'JavaScript', 'React', 'Node.js' ]
+// console.log(sum(10, 20, 30)); //60
+// console.log(greet());         //Hello, Guest  
+// console.log(new Developer("Ashmit").introduce()); //I am Ashmit
+// console.log(scores.get("Ashmit"));   //90
+// console.log([...uniqueNumbers]);     //[ 1, 2, 3 ]
+// result.then(console.log);            //Success
+
+// //======================================================================================================
+
+//6. Default Parameters
+function createUser(
+    name = "Guest",
+    role = "user",
+    active = true
+) {
+    return {
+        name,
+        role,
+        active
+    };
+}
+console.log(createUser());             //{ name: 'Guest', role: 'user', active: true }
+
+console.log(createUser("Ashmit"));     //{ name: 'Ashmit', role: 'user', active: true }   
+
+console.log(createUser("Ashmit", "admin", false));         //{ name: 'Ashmit', role: 'admin', active: false }
+
+// Explicit undefined triggers the default.
+console.log(createUser(undefined, undefined, undefined));  //{ name: 'Guest', role: 'user', active: true }
+
+// null does not trigger the default.
+console.log(createUser(null, null, null));          //{ name: null, role: null, active: null }
+
+// Zero, false, and an empty string are preserved.
+function configure(limit = 10, enabled = true, label = "Default") {
+    return { limit, enabled, label };
 }
 
-// 7. Default parameters
-function greet(person = "Guest") {
-    return `Hello, ${person}`;
+console.log(configure(0, false, ""));            //{ limit: 0, enabled: false, label: '' }
+
+// Defaults can reference earlier parameters.
+function calculatePrice(price, tax = price * 0.18) {
+    return price + tax;
 }
-
-// 8. Classes
-class Developer {
-    constructor(name) {
-        this.name = name;
-    }
-
-    introduce() {
-        return `I am ${this.name}`;
-    }
-}
-
-// 9. Map and Set
-const scores = new Map([["Ashmit", 90]]);
-const uniqueNumbers = new Set([1, 1, 2, 3]);
-
-// 10. Promise
-const result = Promise.resolve("Success");
-
-console.log(message);     //Welcome to BrainMobi!
-console.log(add(2, 3));   //5
-console.log(name, role);  //Ashmit Developer
-console.log(skills);      //[ 'JavaScript', 'React', 'Node.js' ]
-console.log(sum(10, 20, 30)); //60
-console.log(greet());         //Hello, Guest  
-console.log(new Developer("Ashmit").introduce()); //I am Ashmit
-console.log(scores.get("Ashmit"));   //90
-console.log([...uniqueNumbers]);     //[ 1, 2, 3 ]
-result.then(console.log);            //Success
+console.log(calculatePrice(100));        //118
