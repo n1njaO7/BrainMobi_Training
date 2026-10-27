@@ -122,62 +122,128 @@
 
 // //==============================================================================================
 
-//4. API Requests and JSON
+// //4. API Requests and JSON
 
+// const user = {
+//     id: 1,
+//     name: "Ashmit",
+//     skills: ["JavaScript", "Node.js"]
+// };
+
+// // JavaScript object → JSON string
+// const jsonString = JSON.stringify(user);
+// console.log(jsonString);
+
+// // JSON string → JavaScript object
+// const parsedUser = JSON.parse(jsonString);
+// console.log(parsedUser.name);
+// console.log(parsedUser.skills[0]);
+
+// /*OUTPUT
+//  {"id":1,"name":"Ashmit","skills":["JavaScript","Node.js"]}
+//  Ashmit
+//  JavaScript
+// */ 
+
+// //Combined example: Make an API request and process JSON
+
+// async function loadPosts() {
+//     try {
+//         const response = await fetch(
+//             "https://jsonplaceholder.typicode.com/posts"
+//         );
+
+//         if (!response.ok) {
+//             throw new Error(`Request failed: ${response.status}`);
+//         }
+
+//         const posts = await response.json();
+
+//         // API returned an array of objects.
+//         const firstPost = posts[0];
+
+//         console.log("Post ID:", firstPost.id);
+//         console.log("Title:", firstPost.title);
+
+//         // Convert an object to JSON for storage or transmission.
+//         const savedData = JSON.stringify(firstPost);
+//         console.log("JSON string:", savedData);
+//     } catch (error) {
+//         console.error("Could not load posts:", error.message);
+//     }
+// }
+// loadPosts();
+
+// /*OUTPUT
+// Post ID: 1
+// Title: sunt aut facere repellat provident occaecati excepturi optio reprehenderit
+// JSON string: {"userId":1,"id":1,"title":"sunt aut facere repellat provident occaecati 
+// excepturi optio reprehenderit","body":"quia et suscipit\nsuscipit recusandae consequuntur 
+// expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}
+// */
+
+// //==================================================================================================================
+
+//5. ES6 Features Overview
+// 1. let and const
+const company = "BrainMobi";
+let employeeCount = 10;
+
+employeeCount++;
+
+// 2. Arrow function
+const add = (a, b) => a + b;
+
+// 3. Template literals
+const message = `Welcome to ${company}!`;
+
+// 4. Destructuring
 const user = {
-    id: 1,
     name: "Ashmit",
-    skills: ["JavaScript", "Node.js"]
+    role: "Developer"
 };
 
-// JavaScript object → JSON string
-const jsonString = JSON.stringify(user);
-console.log(jsonString);
+const { name, role } = user;
 
-// JSON string → JavaScript object
-const parsedUser = JSON.parse(jsonString);
-console.log(parsedUser.name);
-console.log(parsedUser.skills[0]);
+// 5. Spread operator
+const originalSkills = ["JavaScript", "React"];
+const skills = [...originalSkills, "Node.js"];
 
-/*OUTPUT
- {"id":1,"name":"Ashmit","skills":["JavaScript","Node.js"]}
- Ashmit
- JavaScript
-*/ 
+// 6. Rest parameters
+function sum(...numbers) {
+    return numbers.reduce((total, number) => total + number, 0);
+}
 
-//Combined example: Make an API request and process JSON
+// 7. Default parameters
+function greet(person = "Guest") {
+    return `Hello, ${person}`;
+}
 
-async function loadPosts() {
-    try {
-        const response = await fetch(
-            "https://jsonplaceholder.typicode.com/posts"
-        );
+// 8. Classes
+class Developer {
+    constructor(name) {
+        this.name = name;
+    }
 
-        if (!response.ok) {
-            throw new Error(`Request failed: ${response.status}`);
-        }
-
-        const posts = await response.json();
-
-        // API returned an array of objects.
-        const firstPost = posts[0];
-
-        console.log("Post ID:", firstPost.id);
-        console.log("Title:", firstPost.title);
-
-        // Convert an object to JSON for storage or transmission.
-        const savedData = JSON.stringify(firstPost);
-        console.log("JSON string:", savedData);
-    } catch (error) {
-        console.error("Could not load posts:", error.message);
+    introduce() {
+        return `I am ${this.name}`;
     }
 }
-loadPosts();
 
-/*OUTPUT
-Post ID: 1
-Title: sunt aut facere repellat provident occaecati excepturi optio reprehenderit
-JSON string: {"userId":1,"id":1,"title":"sunt aut facere repellat provident occaecati 
-excepturi optio reprehenderit","body":"quia et suscipit\nsuscipit recusandae consequuntur 
-expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"}
-*/
+// 9. Map and Set
+const scores = new Map([["Ashmit", 90]]);
+const uniqueNumbers = new Set([1, 1, 2, 3]);
+
+// 10. Promise
+const result = Promise.resolve("Success");
+
+console.log(message);     //Welcome to BrainMobi!
+console.log(add(2, 3));   //5
+console.log(name, role);  //Ashmit Developer
+console.log(skills);      //[ 'JavaScript', 'React', 'Node.js' ]
+console.log(sum(10, 20, 30)); //60
+console.log(greet());         //Hello, Guest  
+console.log(new Developer("Ashmit").introduce()); //I am Ashmit
+console.log(scores.get("Ashmit"));   //90
+console.log([...uniqueNumbers]);     //[ 1, 2, 3 ]
+result.then(console.log);            //Success
