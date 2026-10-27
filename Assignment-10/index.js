@@ -45,21 +45,77 @@
 //     .then(console.log)
 //     .catch(error => console.log("Error:", error.message));
 
-//2.B. Promise.any()
-const requests = [
-    Promise.reject(new Error("Server A failed")),
-    new Promise(resolve => {
-        setTimeout(() => resolve("Server B succeeded"), 300);
-    }),
-    new Promise(resolve => {
-        setTimeout(() => resolve("Server C succeeded"), 600);
-    })
-];
+// //2.B. Promise.any()
+// const requests = [
+//     Promise.reject(new Error("Server A failed")),
+//     new Promise(resolve => {
+//         setTimeout(() => resolve("Server B succeeded"), 300);
+//     }),
+//     new Promise(resolve => {
+//         setTimeout(() => resolve("Server C succeeded"), 600);
+//     })
+// ];
 
-Promise.any(requests)
-    .then(console.log)
-    .catch(error => {
-        console.log(error.name);
-        console.log(error.errors.map(err => err.message));
-    });
-    
+// Promise.any(requests)
+//     .then(console.log)
+//     .catch(error => {
+//         console.log(error.name);
+//         console.log(error.errors.map(err => err.message));
+//     });
+
+// //==========================================================================
+
+//3.Fetch Api
+async function getUser(userId) {
+    try {
+        const response = await fetch(
+            `https://jsonplaceholder.typicode.com/users/${userId}`
+        );
+
+        // fetch() does not reject just because the server returns 404 or 500.
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const user = await response.json();
+
+        console.log("Name:", user.name);
+        console.log("Email:", user.email);
+
+        return user;
+    } catch (error) {
+        console.error("Failed to fetch user:", error.message);
+    } finally {
+        console.log("Fetch operation completed.");
+    }
+}
+getUser(1);
+
+//Example: Send a POST request
+async function createUser() {
+    try {
+        const response = await fetch(
+            "https://jsonplaceholder.typicode.com/users",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: "Ashmit",
+                    email: "ashmit@example.com"
+                })
+            }
+        );
+
+        if (!response.ok) {
+            throw new Error(`HTTP Error: ${response.status}`);
+        }
+
+        const createdUser = await response.json();
+        console.log("Created user:", createdUser);
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+createUser(); //Created user: { name: 'Ashmit', email: 'ashmit@example.com', id: 11 }
