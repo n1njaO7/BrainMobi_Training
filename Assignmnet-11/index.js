@@ -80,22 +80,66 @@
 
 // //===========================================================================
 
-//5. Constructors
-class Employee {
-    constructor(name, salary = 0) {
+// //5. Constructors
+// class Employee {
+//     constructor(name, salary = 0) {
+//         this.name = name;
+//         this.salary = salary;
+//         this.active = true;
+//     }
+
+//     getDetails() {
+//         return `${this.name}: ₹${this.salary}`;
+//     }
+// }
+
+// const employee1 = new Employee("Ashmit", 25000);
+// const employee2 = new Employee("Rahul");
+
+// console.log(employee1.getDetails());        //Ashmit: ₹25000
+// console.log(employee2.getDetails());        //Rahul: ₹0
+// console.log(employee2.active);              //true
+
+// //===========================================================================
+
+//6. Inheritance
+class User {
+    constructor(name) {
         this.name = name;
-        this.salary = salary;
-        this.active = true;
+    }
+ 
+    introduce() {
+        return `My name is ${this.name}`;
     }
 
-    getDetails() {
-        return `${this.name}: ₹${this.salary}`;
+    getRole() {
+        return "User";
     }
 }
 
-const employee1 = new Employee("Ashmit", 25000);
-const employee2 = new Employee("Rahul");
+class Developer extends User {
+    constructor(name, language) {
+        super(name);
+        this.language = language;
+    }
 
-console.log(employee1.getDetails());        //Ashmit: ₹25000
-console.log(employee2.getDetails());        //Rahul: ₹0
-console.log(employee2.active);              //true
+    // Method overriding
+    getRole() {
+        return "Developer";
+    }
+
+    writeCode() {
+        return `${this.name} writes ${this.language}`;
+    }
+
+    introduce() {
+        return `${super.introduce()} and I am a ${this.getRole()}`;
+    }
+}
+
+const developer = new Developer("Ashmit", "JavaScript");
+
+console.log(developer.introduce());           //My name is Ashmit and I am a Developer
+console.log(developer.writeCode());           //Ashmit writes JavaScript
+console.log(developer instanceof Developer);  //true
+console.log(developer instanceof User);       //true
