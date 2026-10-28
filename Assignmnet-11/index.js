@@ -28,12 +28,21 @@
 
 // //========================================================================
 
-//2.Modules — import and export
-//File 1 - math.js
-//File 2 - index.js
+// //2.Modules — import and export
+// //File 1 - math.js
+// //File 2 - index.js
 
-import { PI, add, multiply } from "./math.js";
+// import { PI, add, multiply } from "./math.js";
 
-console.log(PI);                //3.14159
-console.log(add(10, 20));       //30 
-console.log(multiply(4, 5));    //20
+// console.log(PI);                //3.14159
+// console.log(add(10, 20));       //30 
+// console.log(multiply(4, 5));    //20
+
+// //=================================================================
+
+//3.Using Named and Default Exports
+//index.js
+import getUser, { role } from "./user.js";
+
+console.log(getUser());     //{ name: 'Ashmit', role: 'Developer' }
+console.log(role);          //Developer
