@@ -77,3 +77,6 @@ console.log(user1.email);           //ashmit.new@example.com
 console.log(user2.email);           //rahul@example.com
 
 console.log(user1 instanceof User); //true
+
+
+
