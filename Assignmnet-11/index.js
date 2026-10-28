@@ -40,9 +40,40 @@
 
 // //=================================================================
 
-//3.Using Named and Default Exports
-//index.js
-import getUser, { role } from "./user.js";
+// //3.Using Named and Default Exports
+// //index.js
+// import getUser, { role } from "./user.js";
 
-console.log(getUser());     //{ name: 'Ashmit', role: 'Developer' }
-console.log(role);          //Developer
+// console.log(getUser());     //{ name: 'Ashmit', role: 'Developer' }
+// console.log(role);          //Developer
+
+// //=====================================================================
+
+//4. Classes and Objects
+class User {
+    constructor(name, email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    introduce() {
+        return `I am ${this.name}`;
+    }
+
+    updateEmail(newEmail) {
+        this.email = newEmail;
+    }
+}
+
+const user1 = new User("Ashmit", "ashmit@example.com");
+const user2 = new User("Rahul", "rahul@example.com");
+
+console.log(user1.introduce());     //I am Ashmit
+console.log(user2.introduce());     //I am Rahul
+
+user1.updateEmail("ashmit.new@example.com");
+
+console.log(user1.email);           //ashmit.new@example.com
+console.log(user2.email);           //rahul@example.com
+
+console.log(user1 instanceof User); //true
