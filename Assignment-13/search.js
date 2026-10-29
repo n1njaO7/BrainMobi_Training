@@ -5,6 +5,15 @@ Example: nums = [-1, 0, 3, 5, 9, 12], target = 9
 */
 
 function search(num,target){
+
+    if (
+        !Array.isArray(num) ||
+        !Number.isFinite(target) ||
+        !num.every(Number.isFinite)
+    ) {
+        return -1;
+    }
+
     let left = 0;
     let right = num.length -1 ;
     while(left<=right){

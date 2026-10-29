@@ -9,6 +9,10 @@ x= 984 Output = false
 */
 
 function palindrome(num){
+
+    if (!Number.isInteger(num)) {
+        return false;
+    }
     
     if (num < 0) return false;
     
