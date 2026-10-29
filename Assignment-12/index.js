@@ -70,27 +70,50 @@
 
 // //==========================================================================================
 
-//3. Static Methods
-class Calculator {
-    static add(a, b) {
-        return a + b;
-    }
+// //3. Static Methods
+// class Calculator {
+//     static add(a, b) {
+//         return a + b;
+//     }
 
-    static multiply(a, b) {
-        return a * b;
-    }
+//     static multiply(a, b) {
+//         return a * b;
+//     }
 
-    static isNumber(value) {
-        return typeof value === "number" &&
-               Number.isFinite(value);
-    }
+//     static isNumber(value) {
+//         return typeof value === "number" &&
+//                Number.isFinite(value);
+//     }
+// }
+
+// console.log(Calculator.add(10, 20));         //30
+// console.log(Calculator.multiply(4, 5));      //20
+// console.log(Calculator.isNumber(10));        //true
+// console.log(Calculator.isNumber(Infinity));  //false
+
+// const calc = new Calculator();
+
+// // console.log(calc.add(10, 20)); // TypeError
+
+// //=======================================================================
+
+//4. Prototypes and Prototype Chain
+function User(name) {
+    this.name = name;
 }
 
-console.log(Calculator.add(10, 20));         //30
-console.log(Calculator.multiply(4, 5));      //20
-console.log(Calculator.isNumber(10));        //true
-console.log(Calculator.isNumber(Infinity));  //false
+User.prototype.greet = function () {
+    return `Hello, ${this.name}`;
+};
 
-const calc = new Calculator();
+const user1 = new User("Ashmit");
+const user2 = new User("Rahul");
 
-// console.log(calc.add(10, 20)); // TypeError
+console.log(user1.greet());         //Hello, Ashmit
+console.log(user2.greet());         //Hello, Rahul
+
+console.log(Object.hasOwn(user1, "name"));    //true
+console.log(Object.hasOwn(user1, "greet"));   //false
+
+console.log(Object.getPrototypeOf(user1) === User.prototype);   //true
+console.log(user1 instanceof User);       //true
