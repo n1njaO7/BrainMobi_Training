@@ -7,6 +7,14 @@ Output: [0, 1]
 
 function twoSum(num,target){
 
+    if (
+    !Array.isArray(nums) ||
+    !Number.isFinite(target) ||
+    !nums.every(Number.isFinite)
+    ) {
+        return [];
+    }
+
     const map= new Map();
     for(let i=0;i<num.length;i++){
         const complement = target - num[i];
