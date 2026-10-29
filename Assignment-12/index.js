@@ -170,35 +170,88 @@
 
 // //==============================================================================================================
 
-//6. Set and Map
-//Set
-const numbers = new Set([1, 2, 2, 3, 3, 4]);
+// //6. Set and Map
+// //Set
+// const numbers = new Set([1, 2, 2, 3, 3, 4]);
 
-numbers.add(5);
-numbers.add(3);
+// numbers.add(5);
+// numbers.add(3);
 
-console.log([...numbers]);      //[1, 2, 3, 4, 5]
-console.log(numbers.has(3));    //true
-console.log(numbers.size);      //5
+// console.log([...numbers]);      //[1, 2, 3, 4, 5]
+// console.log(numbers.has(3));    //true
+// console.log(numbers.size);      //5
 
-numbers.delete(2);
+// numbers.delete(2);
 
-console.log([...numbers]);      //[1, 3, 4, 5]
+// console.log([...numbers]);      //[1, 3, 4, 5]
 
-//Map
-const userRoles = new Map();
+// //Map
+// const userRoles = new Map();
 
-userRoles.set("Ashmit", "Developer");
-userRoles.set("Rahul", "Admin");
+// userRoles.set("Ashmit", "Developer");
+// userRoles.set("Rahul", "Admin");
 
-const userObject = { id: 1 };
-userRoles.set(userObject, "Premium User");
+// const userObject = { id: 1 };
+// userRoles.set(userObject, "Premium User");
 
-console.log(userRoles.get("Ashmit"));       //Developer
-console.log(userRoles.get(userObject));     //Premium User
-console.log(userRoles.has("Rahul"));        //true
-console.log(userRoles.size);                //3
+// console.log(userRoles.get("Ashmit"));       //Developer
+// console.log(userRoles.get(userObject));     //Premium User
+// console.log(userRoles.has("Rahul"));        //true
+// console.log(userRoles.size);                //3
 
-userRoles.delete("Rahul");
+// userRoles.delete("Rahul");
 
-console.log(userRoles.has("Rahul"));        //false
+// console.log(userRoles.has("Rahul"));        //false
+
+// //=====================================================================================
+
+//7. WeakSet and WeakMap
+//WeakSet
+const processedUsers = new WeakSet();
+
+let user = { id: 1, name: "Ashmit" };
+
+processedUsers.add(user);
+
+console.log(processedUsers.has(user)); // true
+
+processedUsers.delete(user);
+
+console.log(processedUsers.has(user)); // false
+
+//WeakMap
+const privateData = new WeakMap();
+
+let user1 = { name: "Ashmit" };
+
+privateData.set(user1, {
+    token: "temporary-token",
+    loginCount: 3
+});
+
+console.log(privateData.get(user1));    //{ token: 'temporary-token', loginCount: 3 }
+console.log(privateData.has(user1));    //true
+
+privateData.delete(user1);
+
+console.log(privateData.has(user1));    //false
+
+//Practical example: Store metadata separately
+const metadata = new WeakMap();
+
+function createUser(name) {
+    const person = { name };
+
+    metadata.set(person, {
+        createdAt: new Date(),
+        internalId: 101
+    });
+
+    return person;
+}
+
+const person = createUser("Ashmit");
+
+console.log(person.name);             // Ashmit
+console.log(metadata.get(person).internalId); // 101
+
