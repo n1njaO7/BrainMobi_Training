@@ -25,10 +25,7 @@ function isValid(str) {
             stack.push(char)
         } 
         else if (char in pair) {
-            if (stack.length === 0) return false;
-
-            if (stack.pop() !== pair[char]) 
-                return false;
+            if (stack.length === 0 || stack.pop() !== pair[char]) return false;
         } 
         else {
             return false;
