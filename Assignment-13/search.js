@@ -21,7 +21,7 @@ function search(num,target){
         if(num[mid]=== target){
             return mid;
         }
-        if(target > num[left]){
+        if(target > num[mid]){
             left = mid + 1;
         }
         else{
@@ -32,3 +32,4 @@ function search(num,target){
 }
 console.log(search([-1, 0, 3, 5, 9, 12], 9)); // 4
 console.log(search([-1, 0, 3, 5, 9, 12], 10)); // -1
+console.log(search([1, 3, 5, 7, 9], 3)); //1
