@@ -11,6 +11,10 @@ Output: false
 */
 
 function isValid(str){
+
+    if (typeof str !== "string") 
+        return false;
+
     const stack = [];
     const pair = {
         ")" : "(",
