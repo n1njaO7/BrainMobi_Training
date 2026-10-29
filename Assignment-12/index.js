@@ -33,37 +33,64 @@
 
 // //===========================================================================================
 
-//2. Getters and Setters
-class User {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
+// //2. Getters and Setters
+// class User {
+//     constructor(name, age) {
+//         this.name = name;
+//         this.age = age;
+//     }
+
+//     // Getter
+//     get details() {
+//         return `${this.name} is ${this.age} years old.`;
+//     }
+
+//     // Setter with validation
+//     set userAge(value) {
+//         if (!Number.isInteger(value) || value < 0) {
+//             throw new Error("Age must be a non-negative integer.");
+//         }
+
+//         this.age = value;
+//     }
+// }
+
+// const user = new User("Ashmit", 22);
+
+// console.log(user.details);   //Ashmit is 22 years old.
+
+// user.userAge = 23;
+// console.log(user.details);  //Ashmit is 22 years old.
+
+// try {
+//     user.userAge = -5;
+// } catch (error) {
+//     console.log(error.message);  //Age must be a non-negative integer.
+// }
+
+// //==========================================================================================
+
+//3. Static Methods
+class Calculator {
+    static add(a, b) {
+        return a + b;
     }
 
-    // Getter
-    get details() {
-        return `${this.name} is ${this.age} years old.`;
+    static multiply(a, b) {
+        return a * b;
     }
 
-    // Setter with validation
-    set userAge(value) {
-        if (!Number.isInteger(value) || value < 0) {
-            throw new Error("Age must be a non-negative integer.");
-        }
-
-        this.age = value;
+    static isNumber(value) {
+        return typeof value === "number" &&
+               Number.isFinite(value);
     }
 }
 
-const user = new User("Ashmit", 22);
+console.log(Calculator.add(10, 20));         //30
+console.log(Calculator.multiply(4, 5));      //20
+console.log(Calculator.isNumber(10));        //true
+console.log(Calculator.isNumber(Infinity));  //false
 
-console.log(user.details);   //Ashmit is 22 years old.
+const calc = new Calculator();
 
-user.userAge = 23;
-console.log(user.details);  //Ashmit is 22 years old.
-
-try {
-    user.userAge = -5;
-} catch (error) {
-    console.log(error.message);  //Age must be a non-negative integer.
-}
+// console.log(calc.add(10, 20)); // TypeError
