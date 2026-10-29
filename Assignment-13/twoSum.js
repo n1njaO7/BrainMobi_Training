@@ -8,9 +8,9 @@ Output: [0, 1]
 function twoSum(num,target){
 
     if (
-    !Array.isArray(nums) ||
+    !Array.isArray(num) ||
     !Number.isFinite(target) ||
-    !nums.every(Number.isFinite)
+    !num.every(Number.isFinite)
     ) {
         return [];
     }
